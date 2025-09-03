@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Les Albums Vivants - Contact</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  .contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  .contact-form button {
+    background-color: #5851db;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .contact-form button:hover {
+    background-color: #403bbd;
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="offres.html">Offres</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="clients.html">Ils nous ont fait confiance</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>Contactez-nous</h1>
+  <p>Une question, un devis ou simplement envie d’échanger ? Envoyez-nous un message via ce formulaire :</p>
+  
+  <form class="contact-form" action="#" method="POST">
+    <label for="name">Nom complet *</label>
+    <input type="text" id="name" name="name" required />
+    
+    <label for="email">Adresse email *</label>
+    <input type="email" id="email" name="email" required />
+    
+    <label for="subject">Sujet</label>
+    <input type="text" id="subject" name="subject" />
+    
+    <label for="message">Message *</label>
+    <textarea id="message" name="message" rows="6" required></textarea>
+    
+    <button type="submit">Envoyer</button>
+  </form>
+</main>
+
+<footer>
+  <p>© 2025 Les Albums Vivants - Tous droits réservés</p>
+</footer>
+</body>
+</html>
+
+
