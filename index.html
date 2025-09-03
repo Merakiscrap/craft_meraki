@@ -15,135 +15,99 @@
 
 body {
   font-family: Arial, sans-serif;
+  background: #f7f7f7;
 }
 
 /* ✅ HEADER */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  position: relative;
+  position: fixed;
+  top: 20px;
+  left: 20px;
   z-index: 1000;
 }
 
+/* ✅ LOGO */
 .logo img {
-  height: 50px;
+  height: 60px;
   cursor: pointer;
+  display: block;
 }
 
-.menu-toggle {
-  font-size: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: none; /* Masqué par défaut (desktop) */
-}
-
+/* ✅ MENU BANNIÈRE */
 nav {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0; /* caché au départ */
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+  transition: width 0.4s ease;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav.open {
+  width: 250px; /* largeur de la bannière */
 }
 
 .menu {
   list-style: none;
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 25px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+nav.open .menu {
+  opacity: 1;
 }
 
 .menu li a {
   text-decoration: none;
   color: #333;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 20px;
 }
 
-.menu li a.active {
-  color: #d9534f;
-}
-
-/* ✅ RESPONSIVE MENU */
+/* ✅ MOBILE : le menu prend tout l'écran */
 @media (max-width: 768px) {
-  .menu {
-    flex-direction: column;
-    background: #fff;
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    width: 250px;
-    height: 100%;
-    padding: 20px;
-    gap: 15px;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-    transition: right 0.3s ease;
-  }
-
-  .menu.show {
-    right: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
-/* ✅ DESKTOP : menu caché sauf survol du logo */
-@media (min-width: 769px) {
-  .menu {
-    display: none;
-  }
-
-  .logo:hover + nav .menu {
-    display: flex;
+  nav.open {
+    width: 100%;
   }
 }
 </style>
 </head>
 <body>
+
+<!-- ✅ LOGO SEUL EN HAUT À GAUCHE -->
 <header>
-  <!-- ✅ LOGO -->
   <a href="index.html" class="logo">
-    <img src="assets/images/logo.png" alt="Logo Meraki" />
+    <img src="images/logo.png" alt="Logo Meraki" />
   </a>
-
-  <!-- ✅ MENU BURGER -->
-  <button class="menu-toggle" aria-label="Menu">&#9776;</button>
-
-  <nav>
-    <ul class="menu">
-      <li><a href="index.html" class="active">Accueil</a></li>
-      <li><a href="offres.html">Offres</a></li>
-      <li><a href="galerie.html">Portfolio</a></li>
-      <li><a href="clients.html">Témoignages</a></li>
-      <li><a href="about.html">À propos</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
 </header>
 
+<!-- ✅ MENU DÉROULANT -->
+<nav>
+  <ul class="menu">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="offres.html">Offres</a></li>
+    <li><a href="galerie.html">Portfolio</a></li>
+    <li><a href="clients.html">Témoignages</a></li>
+    <li><a href="about.html">À propos</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ✅ CONTENU -->
 <main class="container">
   <section class="hero">
     <h1>Meraki</h1>
     <p class="subtitle">Des albums qui racontent votre histoire, avec émotion et savoir-faire.</p>
     <a href="galerie.html" class="btn-primary">Découvrez les créations Meraki</a>
-  </section>
-
-  <section class="preview-offers">
-    <article>
-      <h2>Album digital personnalisé</h2>
-      <p>Mise en page professionnelle, tri humain, impression pro, livré chez vous.</p>
-      <a href="offres.html#digital" class="btn-secondary">En savoir plus</a>
-    </article>
-    <article>
-      <h2>Album fait-main unique</h2>
-      <p>Scrapbooking artisanal, décorations nobles, objet précieux et sensoriel.</p>
-      <a href="offres.html#fait-main" class="btn-secondary">En savoir plus</a>
-    </article>
-    <article>
-      <h2>Stand création souvenir live</h2>
-      <p>Animation photo et souvenirs participatifs lors de vos événements.</p>
-      <a href="offres.html#stand" class="btn-secondary">En savoir plus</a>
-    </article>
   </section>
 </main>
 
@@ -151,14 +115,39 @@ nav {
   <p>© 2025 Meraki - Tous droits réservés</p>
 </footer>
 
-<!-- ✅ JS POUR LE MENU BURGER -->
+<!-- ✅ JS POUR GÉRER L'OUVERTURE DU MENU -->
 <script>
-const toggleBtn = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.menu');
+const logo = document.querySelector('.logo img');
+const nav = document.querySelector('nav');
+const menuLinks = document.querySelectorAll('.menu a');
 
-toggleBtn.addEventListener('click', () => {
-  menu.classList.toggle('show');
+// ✅ Desktop : ouverture au survol
+if (window.innerWidth >= 769) {
+  logo.addEventListener('mouseenter', () => {
+    nav.classList.add('open');
+  });
+  nav.addEventListener('mouseleave', () => {
+    nav.classList.remove('open');
+  });
+}
+
+// ✅ Mobile : ouverture au clic
+logo.addEventListener('click', (e) => {
+  if (window.innerWidth < 769) {
+    e.preventDefault();
+    nav.classList.toggle('open');
+  }
+});
+
+// ✅ Fermer le menu après un clic sur un lien (mobile)
+menuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth < 769) {
+      nav.classList.remove('open');
+    }
+  });
 });
 </script>
 </body>
 </html>
+
