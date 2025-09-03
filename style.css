@@ -1,18 +1,97 @@
-/* HERO */
+/* Reset basique */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Couleurs principales */
+:root {
+    --terracotta: #D27C65;
+    --beige: #F5F1EC;
+    --blanc: #FFFFFF;
+    --brun: #4B3B2A;
+    --or-rose: #C88C69;
+    --gris: #AFAFAF;
+}
+
+/* Body */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--beige);
+    color: var(--brun);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+header .logo img {
+    height: 66px;
+    border-radius: 50%;
+    cursor: default;
+}
+
+/* Menu latéral */
+#sideMenu {
+    position: fixed;
+    top:0;
+    left:0;
+    width:0;
+    height:100%;
+    background: rgba(255,255,255,0.8);
+    overflow:hidden;
+    transition: width 0.4s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+}
+#sideMenu.open {width:250px;}
+#sideMenu ul.menu {
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    opacity:0;
+    transition:opacity 0.3s ease;
+}
+#sideMenu.open ul.menu {opacity:1;}
+#sideMenu ul.menu li a {
+    text-decoration:none;
+    color: var(--brun);
+    font-weight:bold;
+    font-size:20px;
+    transition: color 0.3s ease;
+}
+#sideMenu ul.menu li a:hover {color: var(--terracotta);}
+#sideMenu ul.menu li.lang-switch a {
+    color: var(--terracotta);
+    margin-top: 30px;
+}
+
+/* Hero */
 main.container {
     flex:1;
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:flex-start; /* titre plus haut */
+    justify-content:flex-start;
     text-align:center;
-    padding:150px 20px 40px 20px; /* plus d'espace avant le titre */
+    padding:130px 20px 40px 20px;
 }
 .hero h1 {
     font-family:'Playfair Display', serif;
-    font-size:65px; /* légèrement plus grand */
+    font-size:65px;
     color: var(--terracotta);
-    margin-bottom:30px; /* plus d'espace avec le texte */
+    margin-bottom:35px;
 }
 .meraki-story {
     max-width:800px;
@@ -23,12 +102,19 @@ main.container {
     color: var(--brun);
 }
 
-/* Bouton plus élégant */
+/* Bouton portfolio */
 .btn-portfolio {
-    padding:15px 35px;
+    padding:16px 38px;
     font-size:18px;
-    border-radius:30px; /* plus arrondi */
+    border-radius:30px;
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    background-color: var(--terracotta);
+    color: var(--blanc);
+    text-decoration:none;
+    transition: all 0.3s ease;
 }
+.btn-portfolio:hover {background-color: var(--or-rose);}
 
 /* Cercles Offres */
 .circle-offers {
@@ -49,7 +135,7 @@ main.container {
     align-items:center;
     text-align:center;
     flex-direction:column;
-    font-family: 'Lora', serif; /* police élégante */
+    font-family: 'Lora', serif;
     font-size:18px;
     color: var(--terracotta);
     text-decoration:none;
@@ -69,10 +155,11 @@ main.container {
 .circle:hover .title {display:none;}
 .circle:hover .subtitle {opacity:1;}
 
-/* Logo fixe */
-header .logo img {
-    height:66px; /* 10% plus gros */
-    border-radius:50%;
-    cursor:pointer;
-    transform: none;
+/* Footer */
+footer {
+    text-align:center;
+    padding:15px;
+    font-size:0.85rem;
+    color: var(--gris);
+    margin-top:auto;
 }
