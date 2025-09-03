@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Les Albums Vivants - Souvenirs uniques</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="offres.html">Offres</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="clients.html">Ils nous ont fait confiance</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Les Albums Vivants</h1>
+    <p class="subtitle">Des albums qui racontent votre histoire, avec émotion et savoir-faire.</p>
+    <a href="offres.html" class="btn-primary">Découvrez nos offres</a>
+  </section>
+
+  <section class="preview-offers">
+    <article>
+      <h2>Album digital personnalisé</h2>
+      <p>Mise en page professionnelle, tri humain, impression pro, livré chez vous.</p>
+      <a href="offres.html#digital" class="btn-secondary">En savoir plus</a>
+    </article>
+    <article>
+      <h2>Album fait-main unique</h2>
+      <p>Scrapbooking artisanal, décorations nobles, objet précieux et sensoriel.</p>
+      <a href="offres.html#fait-main" class="btn-secondary">En savoir plus</a>
+    </article>
+    <article>
+      <h2>Stand création souvenir live</h2>
+      <p>Animation photo et souvenirs participatifs lors de vos événements.</p>
+      <a href="offres.html#stand" class="btn-secondary">En savoir plus</a>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Les Albums Vivants - Tous droits réservés</p>
+</footer>
+
+</body>
+</html>
