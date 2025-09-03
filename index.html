@@ -5,57 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meraki - Souvenirs uniques</title>
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<style>
-/* HEADER */
-header {position:fixed; top:20px; left:20px; right:20px; z-index:1000; display:flex; align-items:center; gap:20px;}
-.logo img {height:60px; border-radius:50%; transform:scale(1.4); transition: transform 0.3s ease; cursor:pointer;}
-.logo img:hover {transform:scale(1.5);}
-.lang-switch {margin-left:auto; font-family:'Playfair Display', serif; font-weight:600; cursor:pointer; text-decoration:none; color:#D27C65; font-size:16px;}
-.lang-switch:hover {text-decoration:underline;}
-
-/* MENU */
-nav {position:fixed; top:0; left:0; width:0; height:100%; background: rgba(255,255,255,0.8); overflow:hidden; transition:width 0.4s ease; z-index:999; display:flex; align-items:center; justify-content:center;}
-nav.open {width:250px;}
-.menu {list-style:none; display:flex; flex-direction:column; gap:25px; opacity:0; transition:opacity 0.3s ease;}
-nav.open .menu {opacity:1;}
-.menu li a {text-decoration:none; color:#4B3B2A; font-weight:bold; font-size:20px; transition:color 0.3s ease;}
-.menu li a:hover {color:#D27C65;}
-
-/* HERO */
-main.container {flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:120px 20px 40px 20px;}
-.hero h1 {font-family:'Playfair Display', serif; font-size:60px; color:#D27C65; margin-bottom:20px;}
-.meraki-story {max-width:800px; font-size:18px; line-height:1.7; margin-bottom:40px; color:#4B3B2A;}
-.btn-portfolio {padding:12px 30px; background-color:#D27C65; color:#FFFFFF; border-radius:25px; font-family:'Playfair Display', serif; font-weight:600; transition:all 0.3s ease; text-decoration:none; margin-bottom:60px;}
-.btn-portfolio:hover {background-color:#C88C69; color:#FFFFFF;}
-
-/* CERCLES OFFRES */
-.circle-offers {display:flex; justify-content:center; gap:40px; margin-top:60px; flex-wrap:wrap;}
-.circle {position:relative; width:200px; height:200px; background:#FFFFFF; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:#4B3B2A; text-decoration:none; padding:20px; transition:all 0.3s ease; overflow:hidden; box-shadow:0 3px 6px rgba(0,0,0,0.1);}
-.circle .subtitle {opacity:0; font-size:14px; color:#D27C65; transition:opacity 0.3s ease; position:absolute; bottom:20px; padding:0 10px;}
-.circle:hover {background:#D27C65; color:#FFFFFF; cursor:pointer;}
-.circle:hover .subtitle {opacity:1;}
-
-/* FOOTER */
-footer {text-align:center; font-size:14px; margin-top:auto; padding:20px; color:#777;}
-
-/* RESPONSIVE */
-@media (max-width:768px){
-  nav.open{width:100%;}
-  .hero h1{font-size:42px;}
-  .meraki-story{font-size:16px;}
-  .circle-offers{flex-direction:column; align-items:center;}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
   <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo Meraki"></a>
-  <a href="#" class="lang-switch" id="langSwitch">EN</a>
 </header>
 
-<nav>
+<nav id="sideMenu">
   <ul class="menu">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="offres.html">Offres</a></li>
@@ -63,6 +21,7 @@ footer {text-align:center; font-size:14px; margin-top:auto; padding:20px; color:
     <li><a href="clients.html">Témoignages</a></li>
     <li><a href="about.html">À propos</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li class="lang-switch"><a href="#" id="langSwitch">EN</a></li>
   </ul>
 </nav>
 
@@ -73,9 +32,7 @@ footer {text-align:center; font-size:14px; margin-top:auto; padding:20px; color:
     <a href="galerie.html" class="btn-portfolio" id="portfolioButton"></a>
   </section>
 
-  <section class="circle-offers" id="previewOffers">
-    <!-- Circles injectés via JS -->
-  </section>
+  <section class="circle-offers" id="previewOffers"></section>
 </main>
 
 <footer>
@@ -84,19 +41,19 @@ footer {text-align:center; font-size:14px; margin-top:auto; padding:20px; color:
 
 <script>
 const logo = document.querySelector('.logo img');
-const nav = document.querySelector('nav');
+const nav = document.getElementById('sideMenu');
 const menuLinks = document.querySelectorAll('.menu a');
 const langSwitch = document.getElementById('langSwitch');
 
 let langue = 'fr';
 
-// Charger contenu dynamique
+// Charger contenu JSON
 function loadContent(lang){
   fetch(`assets/translations/content-${lang}.json`)
     .then(resp=>resp.json())
     .then(data=>{
       document.getElementById('heroTitle').innerText = data.heroTitle;
-      document.getElementById('merakiStory').innerText = data.merakiStory;
+      document.getElementById('merakiStory').innerHTML = data.merakiStory.replace(/\n/g,'<br>');
       const portfolioBtn = document.getElementById('portfolioButton');
       portfolioBtn.innerText = data.portfolioButton;
       portfolioBtn.href = "galerie.html";
@@ -117,7 +74,7 @@ function loadContent(lang){
 // Initial load
 loadContent(langue);
 
-// Switch langue
+// Switch langue dans le menu
 langSwitch.addEventListener('click', e=>{
   e.preventDefault();
   langue = (langue==='fr')?'en':'fr';
