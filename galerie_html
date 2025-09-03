@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Les Albums Vivants - Galerie photos</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .gallery-item img:hover {
+    transform: scale(1.05);
+  }
+  .caption {
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="offres.html">Offres</a></li>
+      <li><a href="galerie.html" class="active">Galerie</a></li>
+      <li><a href="clients.html">Ils nous ont fait confiance</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>Galerie photos</h1>
+  <p>Découvrez quelques-unes de nos réalisations, albums digitaux et fait-main, ainsi que des photos de notre stand en événement.</p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Album mariage élégant" />
+      <div class="caption">Album mariage élégant, design digital</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=400&q=80" alt="Scrapbooking artisanal" />
+      <div class="caption">Scrapbooking artisanal, textures et détails</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2c6d7?auto=format&fit=crop&w=400&q=80" alt="Stand création souvenir live" />
+      <div class="caption">Stand création souvenir live, événement d’entreprise</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=400&q=80" alt="Album anniversaire personnalisé" />
+      <div class="caption">Album anniversaire personnalisé, style livre d’or</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="Détails scrapbooking fait-main" />
+      <div class="caption">Détails scrapbooking fait-main</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Livre d’or événement" />
+      <div class="caption">Livre d’or événement avec photos et mots doux</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 Les Albums Vivants - Tous droits réservés</p>
+</footer>
+</body>
+</html>
