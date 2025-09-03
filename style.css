@@ -34,7 +34,7 @@ header {
     z-index: 1000;
 }
 header .logo img {
-    height: 66px;
+    height: 66px; /* légèrement plus gros */
     border-radius: 50%;
     cursor: default;
 }
