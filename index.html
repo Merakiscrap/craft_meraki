@@ -1,207 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meraki - Souvenirs uniques</title>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="css/style.css">
 <style>
 /* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Lato', sans-serif; background:#faf8f5; color:#333; overflow-x:hidden; display:flex; flex-direction:column; min-height:100vh;}
 
 /* HEADER */
-header {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-}
+header {position:fixed; top:20px; left:20px; z-index:1000; display:flex; align-items:center; gap:20px;}
+.logo img {height:60px; border-radius:50%; transform:scale(1.4); transition: transform 0.3s ease; cursor:pointer;}
+.logo img:hover {transform:scale(1.5);}
 
-/* LOGO CIRCULAIRE ET AGRANDI */
-.logo img {
-  height: 60px;
-  cursor: pointer;
-  display: block;
-  border-radius: 50%;      /* cercle */
-  transform: scale(1.4);   /* agrandi de 40% */
-  transition: transform 0.3s ease;
-}
+/* SWITCH LANGUE */
+.lang-switch {margin-left:auto; font-family:'Playfair Display', serif; font-weight:600; cursor:pointer; text-decoration:none; color:#b84a46; font-size:16px;}
+.lang-switch:hover {text-decoration:underline;}
 
-.logo img:hover {
-  transform: scale(1.5);  /* léger zoom au survol */
-}
-
-/* MENU BANNIÈRE */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.95); /* semi-transparent */
-  overflow: hidden;
-  transition: width 0.4s ease;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-nav.open {
-  width: 250px;
-}
-
-/* MENU LIENS */
-.menu {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-nav.open .menu {
-  opacity: 1;
-}
-
-.menu li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  font-size: 20px;
-}
+/* MENU BANNIERE */
+nav {position:fixed; top:0; left:0; width:0; height:100%; background: rgba(255,255,255,0.8); overflow:hidden; transition: width 0.4s ease; z-index:999; display:flex; align-items:center; justify-content:center;}
+nav.open {width:250px;}
+.menu {list-style:none; display:flex; flex-direction:column; gap:25px; opacity:0; transition:opacity 0.3s ease;}
+nav.open .menu {opacity:1;}
+.menu li a {text-decoration:none; color:#333; font-weight:bold; font-size:20px;}
 
 /* CONTENU PRINCIPAL */
-main.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  text-align: center;
-  padding: 100px 20px 40px 20px;
-}
+main.container {flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 20px 40px 20px;}
+.hero h1 {font-family:'Playfair Display', serif; font-size:60px; color:#b84a46; margin-bottom:20px;}
+.meraki-story {max-width:800px; font-size:18px; line-height:1.7; margin-bottom:40px; font-family:'Lato', sans-serif; color:#555;}
+.btn-portfolio {padding:12px 25px; background-color:#b84a46; color:white; text-decoration:none; border-radius:5px; font-family:'Playfair Display', serif; font-weight:600; margin-bottom:60px; display:inline-block;}
+.preview-offers {display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-top:50px;}
+.preview-offers article {background:white; padding:20px; border-radius:10px; width:300px; box-shadow:0 3px 6px rgba(0,0,0,0.1);}
+.btn-secondary {padding:10px 20px; background-color:#333; color:white; text-decoration:none; border-radius:5px; display:inline-block; margin-top:15px;}
+footer {text-align:center; font-size:14px; margin-top:auto; padding:20px; color:#777;}
 
-/* HERO */
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 15px;
-}
-
-.hero .subtitle {
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
-/* ESPACE ENTRE TEXTE ET BOUTON */
-.hero .btn-primary {
-  margin-bottom: 40px;
-  padding: 12px 25px;
-  background-color: #d9534f;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-/* TEXTE HISTOIRE MERAKI */
-.meraki-story {
-  max-width: 800px;
-  margin-bottom: 40px;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* BOUTON PORTFOLIO SOUS TEXTE */
-.btn-portfolio {
-  padding: 12px 25px;
-  background-color: #d9534f;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-bottom: 60px;
-  display: inline-block;
-}
-
-/* PREVIEW OFFERS */
-.preview-offers {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 50px;
-}
-
-.preview-offers article {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-}
-
-.btn-secondary {
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  display: inline-block;
-  margin-top: 15px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  margin-top: auto;
-}
-
-/* RESPONSIVE : MOBILE */
-@media (max-width: 768px) {
-  nav.open {
-    width: 100%;
-  }
-
-  .preview-offers {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero h1 {
-    font-size: 36px;
-  }
-
-  .hero .subtitle, .meraki-story {
-    font-size: 18px;
-  }
+/* RESPONSIVE */
+@media (max-width:768px){
+  nav.open{width:100%;}
+  .hero h1{font-size:42px;}
+  .hero .meraki-story{font-size:16px;}
+  .preview-offers{flex-direction:column; align-items:center;}
 }
 </style>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- LOGO -->
 <header>
-  <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="Logo Meraki" />
-  </a>
+  <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo Meraki"></a>
+  <a href="#" class="lang-switch" id="langSwitch">EN</a>
 </header>
 
-<!-- MENU DÉROULANT -->
 <nav>
   <ul class="menu">
     <li><a href="index.html">Accueil</a></li>
@@ -213,39 +65,15 @@ footer {
   </ul>
 </nav>
 
-<!-- CONTENU PRINCIPAL -->
 <main class="container">
   <section class="hero">
-    <h1>Meraki</h1>
-    <p class="subtitle">Des albums qui racontent votre histoire, avec émotion et savoir-faire.</p>
-    <a href="galerie.html" class="btn-primary">Découvrez les créations Meraki</a>
-
-    <p class="meraki-story">
-      Meraki est un projet qui combine une passion pour l'art et les histoires.  
-      Le mot « Meraki » vient du grec et signifie « fait avec passion ».  
-      À travers ses œuvres, la créatrice fait durer vos plus belles histoires et vos souvenirs les plus mémorables.  
-      Que ce soit pour l'union de deux êtres, une thèse ou un anniversaire, elle saura allier émotions et moments de vie dans des présents inestimables et intemporels.
-    </p>
-
-    <a href="galerie.html" class="btn-portfolio">Découvrez les créations Meraki</a>
+    <h1 id="heroTitle"></h1>
+    <p class="meraki-story" id="merakiStory"></p>
+    <a href="galerie.html" class="btn-portfolio" id="portfolioButton"></a>
   </section>
 
-  <section class="preview-offers">
-    <article>
-      <h2>Album digital personnalisé</h2>
-      <p>Mise en page professionnelle, tri humain, impression pro, livré chez vous.</p>
-      <a href="offres.html#digital" class="btn-secondary">En savoir plus</a>
-    </article>
-    <article>
-      <h2>Album fait-main unique</h2>
-      <p>Scrapbooking artisanal, décorations nobles, objet précieux et sensoriel.</p>
-      <a href="offres.html#fait-main" class="btn-secondary">En savoir plus</a>
-    </article>
-    <article>
-      <h2>Stand création souvenir live</h2>
-      <p>Animation photo et souvenirs participatifs lors de vos événements.</p>
-      <a href="offres.html#stand" class="btn-secondary">En savoir plus</a>
-    </article>
+  <section class="preview-offers" id="previewOffers">
+    <!-- Offres injectées via JS -->
   </section>
 </main>
 
@@ -253,31 +81,59 @@ footer {
   <p>© 2025 Meraki - Tous droits réservés</p>
 </footer>
 
-<!-- JS POUR LE MENU -->
 <script>
 const logo = document.querySelector('.logo img');
 const nav = document.querySelector('nav');
 const menuLinks = document.querySelectorAll('.menu a');
+const langSwitch = document.getElementById('langSwitch');
 
-// Desktop : menu au survol
-if (window.innerWidth >= 769) {
-  logo.addEventListener('mouseenter', () => nav.classList.add('open'));
-  nav.addEventListener('mouseleave', () => nav.classList.remove('open'));
+let langue = 'fr'; // langue par défaut
+
+// Fonction pour charger le contenu
+function loadContent(lang){
+  fetch(`assets/translations/content-${lang}.json`)
+    .then(resp=>resp.json())
+    .then(data=>{
+      document.getElementById('heroTitle').innerText = data.heroTitle;
+      document.getElementById('merakiStory').innerText = data.merakiStory;
+      const portfolioBtn = document.getElementById('portfolioButton');
+      portfolioBtn.innerText = data.portfolioButton;
+      portfolioBtn.href = "galerie.html";
+
+      const previewOffers = document.getElementById('previewOffers');
+      previewOffers.innerHTML = '';
+      data.previewOffers.forEach(offer=>{
+        const article = document.createElement('article');
+        article.innerHTML = `<h2>${offer.title}</h2><p>${offer.text}</p><a class="btn-secondary" href="${offer.link}">En savoir plus</a>`;
+        previewOffers.appendChild(article);
+      });
+    });
 }
 
-// Mobile : menu au clic
-logo.addEventListener('click', e => {
-  if (window.innerWidth < 769) {
-    e.preventDefault();
-    nav.classList.toggle('open');
-  }
+// Initial load
+loadContent(langue);
+
+// Switch langue
+langSwitch.addEventListener('click', e=>{
+  e.preventDefault();
+  langue = (langue === 'fr') ? 'en' : 'fr';
+  langSwitch.innerText = (langue === 'fr') ? 'EN' : 'FR';
+  loadContent(langue);
 });
 
-// Fermer le menu après clic sur lien (mobile)
-menuLinks.forEach(link => link.addEventListener('click', () => {
-  if (window.innerWidth < 769) nav.classList.remove('open');
-}));
+// Desktop menu
+if(window.innerWidth>=769){
+  logo.addEventListener('mouseenter',()=>nav.classList.add('open'));
+  nav.addEventListener('mouseleave',()=>nav.classList.remove('open'));
+}
+
+// Mobile menu
+logo.addEventListener('click', e=>{
+  if(window.innerWidth<769){ e.preventDefault(); nav.classList.toggle('open'); }
+});
+menuLinks.forEach(link=>link.addEventListener('click',()=>{if(window.innerWidth<769) nav.classList.remove('open');}));
 </script>
 
 </body>
 </html>
+
