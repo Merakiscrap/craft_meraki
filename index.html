@@ -1,4 +1,4 @@
-/<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
 <title>Meraki - Souvenirs uniques</title>
 <link rel="stylesheet" href="style.css" />
 <style>
-/* ✅ RESET */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -16,9 +16,13 @@
 body {
   font-family: Arial, sans-serif;
   background: #f7f7f7;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* ✅ HEADER */
+/* HEADER */
 header {
   position: fixed;
   top: 20px;
@@ -26,21 +30,28 @@ header {
   z-index: 1000;
 }
 
-/* ✅ LOGO */
+/* LOGO CIRCULAIRE ET AGRANDI */
 .logo img {
   height: 60px;
   cursor: pointer;
   display: block;
+  border-radius: 50%;      /* cercle */
+  transform: scale(1.4);   /* agrandi de 40% */
+  transition: transform 0.3s ease;
 }
 
-/* ✅ MENU BANNIÈRE */
+.logo img:hover {
+  transform: scale(1.5);  /* léger zoom au survol */
+}
+
+/* MENU BANNIÈRE */
 nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: 0; /* caché au départ */
+  width: 0;
   height: 100%;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95); /* semi-transparent */
   overflow: hidden;
   transition: width 0.4s ease;
   z-index: 999;
@@ -50,9 +61,10 @@ nav {
 }
 
 nav.open {
-  width: 250px; /* largeur de la bannière */
+  width: 250px;
 }
 
+/* MENU LIENS */
 .menu {
   list-style: none;
   display: flex;
@@ -73,24 +85,123 @@ nav.open .menu {
   font-size: 20px;
 }
 
-/* ✅ MOBILE : le menu prend tout l'écran */
+/* CONTENU PRINCIPAL */
+main.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+  padding: 100px 20px 40px 20px;
+}
+
+/* HERO */
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.hero .subtitle {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+/* ESPACE ENTRE TEXTE ET BOUTON */
+.hero .btn-primary {
+  margin-bottom: 40px;
+  padding: 12px 25px;
+  background-color: #d9534f;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* TEXTE HISTOIRE MERAKI */
+.meraki-story {
+  max-width: 800px;
+  margin-bottom: 40px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* BOUTON PORTFOLIO SOUS TEXTE */
+.btn-portfolio {
+  padding: 12px 25px;
+  background-color: #d9534f;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 60px;
+  display: inline-block;
+}
+
+/* PREVIEW OFFERS */
+.preview-offers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.preview-offers article {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+/* RESPONSIVE : MOBILE */
 @media (max-width: 768px) {
   nav.open {
     width: 100%;
+  }
+
+  .preview-offers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero .subtitle, .meraki-story {
+    font-size: 18px;
   }
 }
 </style>
 </head>
 <body>
 
-<!-- ✅ LOGO SEUL EN HAUT À GAUCHE -->
+<!-- LOGO -->
 <header>
   <a href="index.html" class="logo">
-    <img src="assets/images/logo.png" alt="Logo Meraki" />
+    <img src="images/logo.png" alt="Logo Meraki" />
   </a>
 </header>
 
-<!-- ✅ MENU DÉROULANT -->
+<!-- MENU DÉROULANT -->
 <nav>
   <ul class="menu">
     <li><a href="index.html">Accueil</a></li>
@@ -102,12 +213,39 @@ nav.open .menu {
   </ul>
 </nav>
 
-<!-- ✅ CONTENU -->
+<!-- CONTENU PRINCIPAL -->
 <main class="container">
   <section class="hero">
     <h1>Meraki</h1>
     <p class="subtitle">Des albums qui racontent votre histoire, avec émotion et savoir-faire.</p>
     <a href="galerie.html" class="btn-primary">Découvrez les créations Meraki</a>
+
+    <p class="meraki-story">
+      Meraki est un projet qui combine une passion pour l'art et les histoires.  
+      Le mot « Meraki » vient du grec et signifie « fait avec passion ».  
+      À travers ses œuvres, la créatrice fait durer vos plus belles histoires et vos souvenirs les plus mémorables.  
+      Que ce soit pour l'union de deux êtres, une thèse ou un anniversaire, elle saura allier émotions et moments de vie dans des présents inestimables et intemporels.
+    </p>
+
+    <a href="galerie.html" class="btn-portfolio">Découvrez les créations Meraki</a>
+  </section>
+
+  <section class="preview-offers">
+    <article>
+      <h2>Album digital personnalisé</h2>
+      <p>Mise en page professionnelle, tri humain, impression pro, livré chez vous.</p>
+      <a href="offres.html#digital" class="btn-secondary">En savoir plus</a>
+    </article>
+    <article>
+      <h2>Album fait-main unique</h2>
+      <p>Scrapbooking artisanal, décorations nobles, objet précieux et sensoriel.</p>
+      <a href="offres.html#fait-main" class="btn-secondary">En savoir plus</a>
+    </article>
+    <article>
+      <h2>Stand création souvenir live</h2>
+      <p>Animation photo et souvenirs participatifs lors de vos événements.</p>
+      <a href="offres.html#stand" class="btn-secondary">En savoir plus</a>
+    </article>
   </section>
 </main>
 
@@ -115,39 +253,31 @@ nav.open .menu {
   <p>© 2025 Meraki - Tous droits réservés</p>
 </footer>
 
-<!-- ✅ JS POUR GÉRER L'OUVERTURE DU MENU -->
+<!-- JS POUR LE MENU -->
 <script>
 const logo = document.querySelector('.logo img');
 const nav = document.querySelector('nav');
 const menuLinks = document.querySelectorAll('.menu a');
 
-// ✅ Desktop : ouverture au survol
+// Desktop : menu au survol
 if (window.innerWidth >= 769) {
-  logo.addEventListener('mouseenter', () => {
-    nav.classList.add('open');
-  });
-  nav.addEventListener('mouseleave', () => {
-    nav.classList.remove('open');
-  });
+  logo.addEventListener('mouseenter', () => nav.classList.add('open'));
+  nav.addEventListener('mouseleave', () => nav.classList.remove('open'));
 }
 
-// ✅ Mobile : ouverture au clic
-logo.addEventListener('click', (e) => {
+// Mobile : menu au clic
+logo.addEventListener('click', e => {
   if (window.innerWidth < 769) {
     e.preventDefault();
     nav.classList.toggle('open');
   }
 });
 
-// ✅ Fermer le menu après un clic sur un lien (mobile)
-menuLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    if (window.innerWidth < 769) {
-      nav.classList.remove('open');
-    }
-  });
-});
+// Fermer le menu après clic sur lien (mobile)
+menuLinks.forEach(link => link.addEventListener('click', () => {
+  if (window.innerWidth < 769) nav.classList.remove('open');
+}));
 </script>
+
 </body>
 </html>
-
