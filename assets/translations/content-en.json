@@ -1,0 +1,22 @@
+{
+  "heroTitle": "Meraki",
+  "merakiStory": "Meraki is a project that combines a passion for art and storytelling. The word 'Meraki' comes from Greek and means 'done with passion'. Through her works, the creator preserves your most beautiful stories and memorable moments. Whether it’s a wedding, a thesis, or a birthday, she knows how to combine emotions and life moments into timeless, invaluable gifts.",
+  "portfolioButton": "Discover Meraki Creations",
+  "previewOffers": [
+    {
+      "title": "Personalized digital album",
+      "text": "Professional layout, human sorting, pro printing, delivered to your home.",
+      "link": "offres.html#digital"
+    },
+    {
+      "title": "Unique handmade album",
+      "text": "Artisanal scrapbooking, noble decorations, precious and sensory object.",
+      "link": "offres.html#fait-main"
+    },
+    {
+      "title": "Live souvenir creation stand",
+      "text": "Photo animation and participatory souvenirs at your events.",
+      "link": "offres.html#stand"
+    }
+  ]
+}
