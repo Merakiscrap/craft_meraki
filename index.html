@@ -8,40 +8,43 @@
 <style>
 /* RESET */
 * {margin:0;padding:0;box-sizing:border-box;}
-body {font-family:'Lato', sans-serif; background:#faf8f5; color:#333; overflow-x:hidden; display:flex; flex-direction:column; min-height:100vh;}
+body {font-family:'Lato', sans-serif; background:#F5F1EC; color:#4B3B2A; overflow-x:hidden; display:flex; flex-direction:column; min-height:100vh;}
 
 /* HEADER */
-header {position:fixed; top:20px; left:20px; z-index:1000; display:flex; align-items:center; gap:20px;}
+header {position:fixed; top:20px; left:20px; right:20px; z-index:1000; display:flex; align-items:center; gap:20px;}
 .logo img {height:60px; border-radius:50%; transform:scale(1.4); transition: transform 0.3s ease; cursor:pointer;}
 .logo img:hover {transform:scale(1.5);}
-
-/* SWITCH LANGUE */
-.lang-switch {margin-left:auto; font-family:'Playfair Display', serif; font-weight:600; cursor:pointer; text-decoration:none; color:#b84a46; font-size:16px;}
+.lang-switch {margin-left:auto; font-family:'Playfair Display', serif; font-weight:600; cursor:pointer; text-decoration:none; color:#D27C65; font-size:16px;}
 .lang-switch:hover {text-decoration:underline;}
 
 /* MENU BANNIERE */
 nav {position:fixed; top:0; left:0; width:0; height:100%; background: rgba(255,255,255,0.8); overflow:hidden; transition: width 0.4s ease; z-index:999; display:flex; align-items:center; justify-content:center;}
 nav.open {width:250px;}
-.menu {list-style:none; display:flex; flex-direction:column; gap:25px; opacity:0; transition:opacity 0.3s ease;}
+.menu {list-style:none; display:flex; flex-direction:column; gap:25px; opacity:0; transition: opacity 0.3s ease;}
 nav.open .menu {opacity:1;}
-.menu li a {text-decoration:none; color:#333; font-weight:bold; font-size:20px;}
+.menu li a {text-decoration:none; color:#4B3B2A; font-weight:bold; font-size:20px; transition: color 0.3s ease;}
+.menu li a:hover {color:#D27C65;}
 
 /* CONTENU PRINCIPAL */
 main.container {flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 20px 40px 20px;}
-.hero h1 {font-family:'Playfair Display', serif; font-size:60px; color:#b84a46; margin-bottom:20px;}
-.meraki-story {max-width:800px; font-size:18px; line-height:1.7; margin-bottom:40px; font-family:'Lato', sans-serif; color:#555;}
-.btn-portfolio {padding:12px 25px; background-color:#b84a46; color:white; text-decoration:none; border-radius:5px; font-family:'Playfair Display', serif; font-weight:600; margin-bottom:60px; display:inline-block;}
-.preview-offers {display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-top:50px;}
-.preview-offers article {background:white; padding:20px; border-radius:10px; width:300px; box-shadow:0 3px 6px rgba(0,0,0,0.1);}
-.btn-secondary {padding:10px 20px; background-color:#333; color:white; text-decoration:none; border-radius:5px; display:inline-block; margin-top:15px;}
-footer {text-align:center; font-size:14px; margin-top:auto; padding:20px; color:#777;}
+.hero h1 {font-family:'Playfair Display', serif; font-size:60px; color:#D27C65; margin-bottom:20px;}
+.meraki-story {max-width:800px; font-size:18px; line-height:1.7; margin-bottom:40px; font-family:'Lato', sans-serif; color:#4B3B2A;}
+.btn-portfolio {padding:12px 30px; background-color:#D27C65; color:#FFFFFF; border-radius:25px; font-family:'Playfair Display', serif; font-weight:600; transition: all 0.3s ease; text-decoration:none; margin-bottom:60px;}
+.btn-portfolio:hover {background-color:#C88C69; color:#FFFFFF;}
+
+/* CIRCLES OFFRES */
+.circle-offers {display:flex; justify-content:center; gap:40px; margin-top:60px; flex-wrap:wrap;}
+.circle {position:relative; width:200px; height:200px; background:#FFFFFF; border-radius:50%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; color:#4B3B2A; text-decoration:none; padding:20px; transition: all 0.3s ease; overflow:hidden; box-shadow:0 3px 6px rgba(0,0,0,0.1);}
+.circle .subtitle {opacity:0; font-size:14px; color:#D27C65; transition: opacity 0.3s ease; position:absolute; bottom:20px; padding:0 10px;}
+.circle:hover {background:#D27C65; color:#FFFFFF; cursor:pointer;}
+.circle:hover .subtitle {opacity:1;}
 
 /* RESPONSIVE */
 @media (max-width:768px){
   nav.open{width:100%;}
   .hero h1{font-size:42px;}
   .hero .meraki-story{font-size:16px;}
-  .preview-offers{flex-direction:column; align-items:center;}
+  .preview-offers, .circle-offers{flex-direction:column; align-items:center;}
 }
 </style>
 <!-- Google Fonts -->
@@ -50,7 +53,7 @@ footer {text-align:center; font-size:14px; margin-top:auto; padding:20px; color:
 <body>
 
 <header>
-  <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo Meraki"></a>
+  <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo Meraki"></a>
   <a href="#" class="lang-switch" id="langSwitch">EN</a>
 </header>
 
@@ -72,8 +75,8 @@ footer {text-align:center; font-size:14px; margin-top:auto; padding:20px; color:
     <a href="galerie.html" class="btn-portfolio" id="portfolioButton"></a>
   </section>
 
-  <section class="preview-offers" id="previewOffers">
-    <!-- Offres injectées via JS -->
+  <section class="circle-offers" id="previewOffers">
+    <!-- Circles injectés via JS -->
   </section>
 </main>
 
@@ -89,7 +92,6 @@ const langSwitch = document.getElementById('langSwitch');
 
 let langue = 'fr'; // langue par défaut
 
-// Fonction pour charger le contenu
 function loadContent(lang){
   fetch(`assets/translations/content-${lang}.json`)
     .then(resp=>resp.json())
@@ -103,9 +105,11 @@ function loadContent(lang){
       const previewOffers = document.getElementById('previewOffers');
       previewOffers.innerHTML = '';
       data.previewOffers.forEach(offer=>{
-        const article = document.createElement('article');
-        article.innerHTML = `<h2>${offer.title}</h2><p>${offer.text}</p><a class="btn-secondary" href="${offer.link}">En savoir plus</a>`;
-        previewOffers.appendChild(article);
+        const circle = document.createElement('a');
+        circle.href = offer.link;
+        circle.className = 'circle';
+        circle.innerHTML = `<span class="title">${offer.title}</span><span class="subtitle">${offer.text}</span>`;
+        previewOffers.appendChild(circle);
       });
     });
 }
@@ -116,8 +120,8 @@ loadContent(langue);
 // Switch langue
 langSwitch.addEventListener('click', e=>{
   e.preventDefault();
-  langue = (langue === 'fr') ? 'en' : 'fr';
-  langSwitch.innerText = (langue === 'fr') ? 'EN' : 'FR';
+  langue = (langue==='fr')?'en':'fr';
+  langSwitch.innerText = (langue==='fr')?'EN':'FR';
   loadContent(langue);
 });
 
@@ -136,4 +140,3 @@ menuLinks.forEach(link=>link.addEventListener('click',()=>{if(window.innerWidth<
 
 </body>
 </html>
-
