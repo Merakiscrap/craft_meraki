@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Les Albums Vivants - À propos</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  .about-section {
+    margin-top: 2rem;
+    line-height: 1.6;
+    color: #444;
+  }
+  .about-section img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+  }
+  .highlight {
+    color: #5851db;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul class="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="offres.html">Offres</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="clients.html">Ils nous ont fait confiance</a></li>
+      <li><a href="apropos.html" class="active">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container about-section">
+  <h1>À propos de Les Albums Vivants</h1>
+
+  <p>Je suis une ancienne chef de projet passionnée par la créativité et l’émotion des souvenirs. Avec une solide expérience en gestion, organisation et design, j’ai décidé de donner vie à vos événements à travers des albums uniques, riches en histoires et en sentiments.</p>
+
+  <p>Que ce soit un mariage, une thèse, un anniversaire ou tout autre moment important, je combine mon sens du détail, ma discipline et ma passion pour le storytelling visuel pour créer des albums qui racontent votre histoire d’une façon authentique et touchante.</p>
+
+  <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Photo créatrice en action" />
+
+  <p>J’aime aussi partager mes connaissances via des formations et ateliers, mêlant créativité, organisation et éducation. Ce projet est pour moi une aventure humaine et artistique, centrée sur la qualité, la proximité et la personnalisation.</p>
+
+  <p class="highlight">Basée entre la France et la Grèce, je parle couramment français, anglais et italien, et peux accompagner une clientèle internationale.</p>
+
+</main>
+
+<footer>
+  <p>© 2025 Les Albums Vivants - Tous droits réservés</p>
+</footer>
+</body>
+</html>
+
+
