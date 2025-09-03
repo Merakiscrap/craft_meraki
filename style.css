@@ -1,81 +1,127 @@
-/* Reset & Global Styles */
+/* Reset basique */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #2C2C2C; /* Soft black for text */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* Couleurs principales */
+:root {
+    --terracotta: #D27C65;
+    --beige: #F5F1EC;
+    --blanc: #FFFFFF;
+    --brun: #4B3B2A;
+    --or-rose: #C88C69;
+    --gris: #AFAFAF;
+}
+
+/* Body */
 body {
-  background-color: #F4EDE4; /* Beige cream background */
-  line-height: 1.6;
+    background-color: var(--beige);
+    color: var(--brun);
+    line-height: 1.6;
 }
 
 /* Header */
 header {
-  background-color: #FFFFFF; /* Keep header clean */
-  border-bottom: 1px solid #D1866A33; /* subtle terracotta border */
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: var(--blanc);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* Navigation Menu */
-.menu {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
+header .logo {
+    height: 50px;
 }
 
-.menu li a {
-  text-decoration: none;
-  color: #2C2C2C;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
-.menu li a:hover,
-.menu li a.active {
-  background-color: #D1866A; /* Terracotta main */
-  color: #F4EDE4; /* Light cream text on hover */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+header nav a {
+    text-decoration: none;
+    color: var(--brun);
+    font-weight: 500;
 }
 
-/* Container */
-.container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+/* Hero */
+#hero {
+    text-align: center;
+    padding: 80px 20px;
 }
 
-/* Hero Section */
-.hero {
-  text-align: center;
-  margin-bottom: 3rem;
+#hero h1 {
+    font-size: 3rem;
+    color: var(--terracotta);
+    margin-bottom: 20px;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  color: #D1866A; /* Main terracotta */
+#hero p {
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    font-size: 1.1rem;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  color: #9BAE9F; /* Sage green for subtlety */
-  margin-bottom: 1.5rem;
+.btn {
+    background-color: var(--terracotta);
+    color: var(--blanc);
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
-/* Primary Button */
-.btn-primary {
-  background-color: #D1866A; /* Terracotta main */
-  color: #F4EDE4; /* Cream text */
-  padding: 0.7rem 1.5rem;
-  text-decoration: none;
-  border-radius: 8px;
+.btn:hover {
+    background-color: var(--or-rose);
+}
+
+/* Portfolio */
+#portfolio {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.offers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.offer {
+    background-color: var(--blanc);
+    border-radius: 10px;
+    padding: 30px 20px;
+    width: 280px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.offer:hover {
+    transform: translateY(-5px);
+}
+
+.offer h3 {
+    color: var(--terracotta);
+    margin-bottom: 15px;
+}
+
+.offer p {
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--blanc);
+    color: var(--gris);
+    font-size: 0.9rem;
+    margin-top: 50px;
+}
