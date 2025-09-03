@@ -40,6 +40,7 @@
 </footer>
 
 <script>
+// Elements
 const logo = document.querySelector('.logo img');
 const nav = document.getElementById('sideMenu');
 const menuLinks = document.querySelectorAll('.menu a');
@@ -47,7 +48,7 @@ const langSwitch = document.getElementById('langSwitch');
 
 let langue = 'fr';
 
-// Charger contenu JSON
+// Charger le contenu JSON
 function loadContent(lang){
   fetch(`assets/translations/content-${lang}.json`)
     .then(resp=>resp.json())
@@ -74,7 +75,7 @@ function loadContent(lang){
 // Initial load
 loadContent(langue);
 
-// Switch langue dans le menu
+// Switch langue
 langSwitch.addEventListener('click', e=>{
   e.preventDefault();
   langue = (langue==='fr')?'en':'fr';
