@@ -249,3 +249,63 @@ footer {
   .btn-portfolio {font-size:16px; padding:14px 30px;}
   header .logo img {height:50px;} /* ensure mobile logo */
 }
+
+/* ==========================
+   CONTACT FORM
+========================== */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.contact-form button {
+  background-color: var(--terracotta);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: rgba(210,124,101,0.8);
+}
+
+.form-message {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.form-message.success {
+  color: green;
+}
+
+.form-message.error {
+  color: red;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 0 20px;
+  }
+
+  .contact-form button {
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+}
+
