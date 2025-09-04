@@ -1,113 +1,145 @@
 // ==========================
-// Load menu and footer
+// Universal Load Menu & Footer + Menu & Language Init
 // ==========================
-Promise.all([
-  fetch('components/menu.html').then(r => r.text()),
-  fetch('components/footer.html').then(r => r.text())
-]).then(([menuHTML, footerHTML]) => {
-  document.getElementById('menu-container').innerHTML = menuHTML;
-  document.getElementById('footer-container').innerHTML = footerHTML;
-  
-  
-  // === Highlight active page ===
-  const pageId = document.body.dataset.page;
-  if (pageId) {
-    const menuLinks = document.querySelectorAll('nav ul li a');
-    menuLinks.forEach(link => {
-      const hrefPage = link.getAttribute('href').split('.')[0];
-      if (hrefPage === pageId) link.classList.add('active');
-      else link.classList.remove('active');
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  // --- Ensure containers exist ---
+  if (!document.getElementById('menu-container')) {
+    const menuDiv = document.createElement('div');
+    menuDiv.id = 'menu-container';
+    document.body.prepend(menuDiv); // insert at top
   }
-  
-  initMenuAndLang();
-});
+  if (!document.getElementById('footer-container')) {
+    const footerDiv = document.createElement('div');
+    footerDiv.id = 'footer-container';
+    document.body.appendChild(footerDiv); // insert at bottom
+  }
 
-// ==========================
-// Initialize menu + language switch
-// ==========================
-function initMenuAndLang() {
-  const header = document.querySelector('header');
-  const logo = document.querySelector('.logo img');
-  const nav = document.querySelector('nav');
-  const menuLinks = document.querySelectorAll('nav ul li a');
-  const langSwitch = document.getElementById('langSwitch');
-  const pageId = document.body.dataset.page;
-  const mobileBreakpoint = 768;
-  let lastScroll = 0;
+  const menuContainer = document.getElementById('menu-container');
+  const footerContainer = document.getElementById('footer-container');
 
-  // === Mobile scroll hide ===
-  window.addEventListener('scroll', () => {
-    if (header && window.innerWidth <= mobileBreakpoint) {
-      const currentScroll = window.pageYOffset;
-      header.style.top = currentScroll > lastScroll ? `-${header.offsetHeight}px` : '0';
-      lastScroll = currentScroll;
+  // --- Compute base path for components (auto-adjust for subfolders) ---
+  const pathParts = window.location.pathname.split('/');
+  let basePath = '/';
+  if (pathParts.length > 2) {
+    basePath = '../'.repeat(pathParts.length - 2);
+  }
+
+  // --- Load menu and footer ---
+  Promise.all([
+    fetch(basePath + 'components/menu.html').then(r => r.text()),
+    fetch(basePath + 'components/footer.html').then(r => r.text())
+  ])
+  .then(([menuHTML, footerHTML]) => {
+    menuContainer.innerHTML = menuHTML;
+    footerContainer.innerHTML = footerHTML;
+
+    // --- Highlight active page ---
+    const pageId = document.body.dataset.page;
+    if (pageId) {
+      document.querySelectorAll('nav ul li a').forEach(link => {
+        const hrefPage = link.getAttribute('href').split('.')[0];
+        if (hrefPage === pageId) link.classList.add('active');
+        else link.classList.remove('active');
+      });
     }
-  });
 
-  // === Desktop hover menu ===
-  if (logo && nav && window.innerWidth > mobileBreakpoint) {
-    logo.addEventListener('mouseenter', () => nav.classList.add('open'));
-    nav.addEventListener('mouseleave', () => nav.classList.remove('open'));
-  }
+    // --- Initialize menu and language switch ---
+    if (typeof initMenuAndLang === 'function') {
+      initMenuAndLang();
+    } else {
+      initMenuAndLang();
+    }
+  })
+  .catch(err => console.error('Error loading menu/footer:', err));
 
-  // === Mobile click toggle ===
-  if (logo && nav) {
-    logo.addEventListener('click', e => {
-      if (window.innerWidth <= mobileBreakpoint) {
-        e.preventDefault();
-        nav.classList.toggle('open');
+  // ==========================
+  // Initialize menu + language switch
+  // ==========================
+  function initMenuAndLang() {
+    const header = document.querySelector('header');
+    const logo = document.querySelector('.logo img');
+    const nav = document.querySelector('nav');
+    const menuLinks = document.querySelectorAll('nav ul li a');
+    const langSwitch = document.getElementById('langSwitch');
+    const pageId = document.body.dataset.page;
+    const mobileBreakpoint = 768;
+    let lastScroll = 0;
+
+    // --- Mobile scroll hide ---
+    window.addEventListener('scroll', () => {
+      if (header && window.innerWidth <= mobileBreakpoint) {
+        const currentScroll = window.pageYOffset;
+        header.style.top = currentScroll > lastScroll ? `-${header.offsetHeight}px` : '0';
+        lastScroll = currentScroll;
       }
     });
-  }
 
-  // === Close menu on mobile link click ===
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= mobileBreakpoint && nav) nav.classList.remove('open');
-    });
-  });
+    // --- Desktop hover menu ---
+    if (logo && nav && window.innerWidth > mobileBreakpoint) {
+      logo.addEventListener('mouseenter', () => nav.classList.add('open'));
+      nav.addEventListener('mouseleave', () => nav.classList.remove('open'));
+    }
 
-  // === Language switch ===
-  if (!langSwitch || !pageId) return;
-  let currentLang = 'fr';
-
-  const updateContent = lang => {
-    fetch(`assets/translations/content-${lang}.json`)
-      .then(resp => resp.json())
-      .then(data => {
-        const pageContent = data[pageId];
-        if (!pageContent) return;
-
-        for (const key in pageContent) {
-          const el = document.getElementById(key);
-          if (!el) continue;
-
-          // If previewOffers, build circles
-          if (key === 'previewOffers') {
-            el.innerHTML = '';
-            pageContent.previewOffers.forEach(offer => {
-              const circle = document.createElement('a');
-              circle.href = offer.link;
-              circle.className = 'circle';
-              circle.innerHTML = `<span class="title">${offer.title}</span><span class="subtitle">${offer.text}</span>`;
-              el.appendChild(circle);
-            });
-          } else {
-            el.innerHTML = pageContent[key];
-          }
+    // --- Mobile click toggle ---
+    if (logo && nav) {
+      logo.addEventListener('click', e => {
+        if (window.innerWidth <= mobileBreakpoint) {
+          e.preventDefault();
+          nav.classList.toggle('open');
         }
       });
-  };
+    }
 
-  // Initial load
-  updateContent(currentLang);
+    // --- Close menu on mobile link click ---
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= mobileBreakpoint && nav) nav.classList.remove('open');
+      });
+    });
 
-  // Switch on click
-  langSwitch.addEventListener('click', e => {
-    e.preventDefault();
-    currentLang = currentLang === 'fr' ? 'en' : 'fr';
-    langSwitch.innerText = currentLang === 'fr' ? 'EN' : 'FR';
+    // --- Language switch ---
+    if (!langSwitch || !pageId) return;
+    let currentLang = 'fr';
+
+    const updateContent = lang => {
+      fetch(`assets/translations/content-${lang}.json`)
+        .then(resp => resp.json())
+        .then(data => {
+          const pageContent = data[pageId];
+          if (!pageContent) return;
+
+          for (const key in pageContent) {
+            const el = document.getElementById(key);
+            if (!el) continue;
+
+            // If previewOffers, build circles
+            if (key === 'previewOffers') {
+              el.innerHTML = '';
+              pageContent.previewOffers.forEach(offer => {
+                const circle = document.createElement('a');
+                circle.href = offer.link;
+                circle.className = 'circle';
+                circle.innerHTML = `<span class="title">${offer.title}</span><span class="subtitle">${offer.text}</span>`;
+                el.appendChild(circle);
+              });
+            } else {
+              el.innerHTML = pageContent[key];
+            }
+          }
+        })
+        .catch(err => console.error(`Error loading translation content for ${lang}:`, err));
+    };
+
+    // Initial load
     updateContent(currentLang);
-  });
-}
+
+    // Switch on click
+    langSwitch.addEventListener('click', e => {
+      e.preventDefault();
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      langSwitch.innerText = currentLang === 'fr' ? 'EN' : 'FR';
+      updateContent(currentLang);
+    });
+  }
+});
+
