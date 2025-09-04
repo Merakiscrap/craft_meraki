@@ -45,7 +45,7 @@ header .logo {
 }
 
 header .logo img {
-  height: 50px; /* mobile first */
+  height: 54px; /* mobile first */
   border-radius: 50%;
   display: block;
   transition: none; /* no scaling */
@@ -54,7 +54,7 @@ header .logo img {
 /* Desktop: slightly bigger */
 @media (min-width: 769px) {
   header .logo img {
-    height: 66px;
+    height: 68px;
   }
 }
 
