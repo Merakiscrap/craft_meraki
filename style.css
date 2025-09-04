@@ -1,9 +1,11 @@
 /* RESET */
 * {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+/* COLOR PALETTE */
 :root {
   --terracotta: #D27C65;
   --beige: #F5F1EC;
@@ -12,174 +14,213 @@
   --or-rose: #C88C69;
   --gris: #AFAFAF;
 }
+
+/* BODY */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--beige);
   color: var(--brun);
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/*HEADER*/
+/* HEADER */
 header {
   position: fixed;
-  top: 20px; /* space from top */
-  left: 20px; /* space from left */
-  right: 20px; /* keep full width if needed */
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
+  padding: 20px 50px; /* spacing from top/left/right */
   gap: 20px;
 }
-
 
 /* LOGO */
 header .logo img {
   height: 66px;
-  border-radius:50%;
+  border-radius: 50%;
 }
 
-/* NAV */
+/* NAVIGATION */
 nav {
   position: fixed;
-  top:0;
-  left:0;
-  width:0;
-  height:100%;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
   background: rgba(255,255,255,0.8);
-  overflow:hidden;
+  overflow: hidden;
   transition: width 0.4s ease;
-  z-index:999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-nav.open { width:250px; }
+
+nav.open {
+  width: 250px;
+}
 
 nav ul {
-  list-style:none;
-  display:flex;
-  flex-direction:column;
-  gap:25px;
-  opacity:0;
-  transition:opacity 0.3s ease;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-nav.open ul { opacity:1; }
+
+nav.open ul {
+  opacity: 1;
+}
 
 nav ul li a {
-  text-decoration:none;
+  text-decoration: none;
   color: var(--brun);
-  font-weight:bold;
-  font-size:18px;
+  font-weight: bold;
+  font-size: 18px;
   transition: all 0.3s ease;
 }
-nav ul li a:hover { color: rgba(210,124,101,0.8); }
-nav ul li a.active { text-decoration:underline; font-weight:700; }
+
+nav ul li a:hover {
+  color: rgba(210,124,101,0.8); /* transparent terracotta hover */
+}
+
+nav ul li a.active {
+  text-decoration: underline; /* current page */
+  font-weight: 700;
+}
 
 /* LANG SWITCH */
 .lang-switch a {
-  font-size:14px;
+  font-size: 14px;
   color: var(--terracotta);
-  font-weight:600;
-  margin-top:20px;
-  display:inline-block;
+  font-weight: 600;
+  margin-top: 20px;
+  display: inline-block;
 }
 
-/* HERO */
+/* HERO SECTION */
 main.container {
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:120px 20px 40px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 160px 20px 40px 20px; /* space for header */
 }
+
 .hero h1 {
-  font-family:'Lato', sans-serif;
-  font-size:56px;
+  font-family: 'Lato', sans-serif; /* elegant for title */
+  font-size: 56px;
   color: var(--terracotta);
-  margin-bottom:30px;
+  margin-bottom: 30px;
 }
+
 .meraki-story {
-  max-width:800px;
-  font-size:18px;
-  line-height:1.8;
-  margin-bottom:50px;
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 50px;
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* elegant readable */
 }
+
 .btn-portfolio {
-  padding:16px 36px;
+  padding: 18px 40px;
   background-color: var(--terracotta);
   color: var(--blanc);
-  border-radius:35px;
-  text-decoration:none;
-  font-weight:600;
+  border-radius: 35px;
+  text-decoration: none;
+  font-weight: 600;
   transition: all 0.3s ease;
 }
+
 .btn-portfolio:hover {
   background-color: rgba(200,140,105,0.9);
 }
 
-/* CERCLES OFFRES */
+/* CIRCLES OFFERS */
 .circle-offers {
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  margin-top:60px;
-  flex-wrap:wrap;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 60px;
+  flex-wrap: wrap;
 }
+
 .circle {
-  position:relative;
-  width:200px;
-  height:200px;
+  position: relative;
+  width: 200px;
+  height: 200px;
   background: var(--blanc);
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   color: var(--brun);
-  text-decoration:none;
-  padding:20px;
+  text-decoration: none;
+  padding: 20px;
   transition: all 0.3s ease;
-  overflow:hidden;
-  flex-direction:column;
-  box-shadow:0 3px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  flex-direction: column;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
+
 .circle .title,
 .circle .subtitle {
   transition: opacity 0.3s ease;
-  position:absolute;
-  width:100%;
-  text-align:center;
-  padding:0 10px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
-.circle .title { font-weight:bold; font-size:18px; color: var(--terracotta);}
+
+.circle .title {
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--terracotta);
+}
+
 .circle .subtitle {
-  font-size:14px;
+  font-size: 14px;
   color: var(--blanc);
-  opacity:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100%;
+  opacity: 0;
 }
-.circle:hover { background: var(--terracotta);}
-.circle:hover .title { opacity:0;}
-.circle:hover .subtitle { opacity:1;}
+
+.circle:hover {
+  background: var(--terracotta);
+}
+
+.circle:hover .title {
+  opacity: 0;
+}
+
+.circle:hover .subtitle {
+  opacity: 1;
+}
 
 /* FOOTER */
 footer {
-  text-align:center;
-  font-size:12px;
-  padding:20px 0;
+  text-align: center;
+  font-size: 12px;
+  padding: 20px 0;
   color: var(--gris);
-  background:none;
+  background: none;
+  margin-top: auto;
 }
 
 /* RESPONSIVE */
-@media (max-width:768px){
+@media (max-width: 768px){
   nav.open{width:100%;}
   .hero h1{font-size:42px;}
   .meraki-story{font-size:16px;}
