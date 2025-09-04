@@ -4,25 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meraki - Souvenirs uniques</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Logo Meraki"></a>
-</header>
 
-<nav id="sideMenu">
-  <ul class="menu">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="offres.html">Offres</a></li>
-    <li><a href="galerie.html">Portfolio</a></li>
-    <li><a href="clients.html">Témoignages</a></li>
-    <li><a href="about.html">À propos</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li class="lang-switch"><a href="#" id="langSwitch">EN</a></li>
-  </ul>
-</nav>
+<!-- Menu chargé dynamiquement -->
+<div id="menu-container"></div>
 
 <main class="container">
   <section class="hero">
@@ -31,69 +19,16 @@
     <a href="galerie.html" class="btn-portfolio" id="portfolioButton"></a>
   </section>
 
-  <section class="circle-offers" id="previewOffers"></section>
+  <section class="circle-offers" id="previewOffers">
+    <!-- Cercles injectés par JS -->
+  </section>
 </main>
 
-<footer>
-  <p id="footerText"></p>
-</footer>
+<!-- Footer chargé dynamiquement -->
+<div id="footer-container"></div>
 
-<script>
-// Elements
-const logo = document.querySelector('.logo img');
-const nav = document.getElementById('sideMenu');
-const menuLinks = document.querySelectorAll('.menu a');
-const langSwitch = document.getElementById('langSwitch');
-
-let langue = 'fr';
-
-// Charger le contenu JSON
-function loadContent(lang){
-  fetch(`assets/translations/content-${lang}.json`)
-    .then(resp=>resp.json())
-    .then(data=>{
-      document.getElementById('heroTitle').innerText = data.heroTitle;
-      document.getElementById('merakiStory').innerHTML = data.merakiStory.replace(/\n/g,'<br>');
-      const portfolioBtn = document.getElementById('portfolioButton');
-      portfolioBtn.innerText = data.portfolioButton;
-      portfolioBtn.href = "galerie.html";
-      document.getElementById('footerText').innerText = data.footerText;
-
-      const previewOffers = document.getElementById('previewOffers');
-      previewOffers.innerHTML = '';
-      data.previewOffers.forEach(offer=>{
-        const circle = document.createElement('a');
-        circle.href = offer.link;
-        circle.className = 'circle';
-        circle.innerHTML = `<span class="title">${offer.title}</span><span class="subtitle">${offer.text}</span>`;
-        previewOffers.appendChild(circle);
-      });
-    });
-}
-
-// Initial load
-loadContent(langue);
-
-// Switch langue
-langSwitch.addEventListener('click', e=>{
-  e.preventDefault();
-  langue = (langue==='fr')?'en':'fr';
-  langSwitch.innerText = (langue==='fr')?'EN':'FR';
-  loadContent(langue);
-});
-
-// Menu hover desktop
-if(window.innerWidth >= 769){
-  logo.addEventListener('mouseenter',()=>nav.classList.add('open'));
-  nav.addEventListener('mouseleave',()=>nav.classList.remove('open'));
-}
-
-// Menu toggle mobile
-logo.addEventListener('click', e=>{
-  if(window.innerWidth < 769){ e.preventDefault(); nav.classList.toggle('open'); }
-});
-menuLinks.forEach(link=>link.addEventListener('click',()=>{if(window.innerWidth < 769) nav.classList.remove('open');}));
-</script>
+<script src="js/load-components.js"></script>
+<script src="js/content.js"></script>
 
 </body>
 </html>
