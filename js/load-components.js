@@ -1,19 +1,17 @@
 // ==========================
-// Load menu and footer, then init everything
+// Load menu and footer
 // ==========================
 Promise.all([
-  fetch('components/menu.html').then(resp => resp.text()),
-  fetch('components/footer.html').then(resp => resp.text())
-]).then(([menuData, footerData]) => {
-  document.getElementById('menu-container').innerHTML = menuData;
-  document.getElementById('footer-container').innerHTML = footerData;
-
-  // Now initialize menu + language
+  fetch('components/menu.html').then(r => r.text()),
+  fetch('components/footer.html').then(r => r.text())
+]).then(([menuHTML, footerHTML]) => {
+  document.getElementById('menu-container').innerHTML = menuHTML;
+  document.getElementById('footer-container').innerHTML = footerHTML;
   initMenuAndLang();
 });
 
 // ==========================
-// Initialize menu behaviors + language switch
+// Initialize menu + language switch
 // ==========================
 function initMenuAndLang() {
   const header = document.querySelector('header');
@@ -21,32 +19,26 @@ function initMenuAndLang() {
   const nav = document.querySelector('nav');
   const menuLinks = document.querySelectorAll('nav ul li a');
   const langSwitch = document.getElementById('langSwitch');
-
+  const pageId = document.body.dataset.page;
   const mobileBreakpoint = 768;
   let lastScroll = 0;
 
-  // ==========================
-  // Mobile scroll hide
-  // ==========================
+  // === Mobile scroll hide ===
   window.addEventListener('scroll', () => {
-    if (window.innerWidth <= mobileBreakpoint && header) {
+    if (header && window.innerWidth <= mobileBreakpoint) {
       const currentScroll = window.pageYOffset;
       header.style.top = currentScroll > lastScroll ? `-${header.offsetHeight}px` : '0';
       lastScroll = currentScroll;
     }
   });
 
-  // ==========================
-  // Desktop hover menu
-  // ==========================
-  if (window.innerWidth > mobileBreakpoint && logo && nav) {
+  // === Desktop hover menu ===
+  if (logo && nav && window.innerWidth > mobileBreakpoint) {
     logo.addEventListener('mouseenter', () => nav.classList.add('open'));
     nav.addEventListener('mouseleave', () => nav.classList.remove('open'));
   }
 
-  // ==========================
-  // Mobile click menu toggle
-  // ==========================
+  // === Mobile click toggle ===
   if (logo && nav) {
     logo.addEventListener('click', e => {
       if (window.innerWidth <= mobileBreakpoint) {
@@ -56,44 +48,53 @@ function initMenuAndLang() {
     });
   }
 
-  // ==========================
-  // Close menu on link click (mobile)
-  // ==========================
+  // === Close menu on mobile link click ===
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth <= mobileBreakpoint && nav) nav.classList.remove('open');
     });
   });
 
-  // ==========================
-  // Language switch
-  // ==========================
-  if (langSwitch) {
-    let currentLang = 'fr'; // default
-    const pageId = document.body.dataset.page; // e.g., "index" or "contact"
+  // === Language switch ===
+  if (!langSwitch || !pageId) return;
+  let currentLang = 'fr';
 
-    const updateContent = (lang) => {
-      fetch(`assets/translations/content-${lang}.json`)
-        .then(resp => resp.json())
-        .then(data => {
-          if (pageId && data[pageId]) {
-            const pageContent = data[pageId];
-            for (const key in pageContent) {
-              const el = document.getElementById(key);
-              if (el) el.innerHTML = pageContent[key];
-            }
+  const updateContent = lang => {
+    fetch(`assets/translations/content-${lang}.json`)
+      .then(resp => resp.json())
+      .then(data => {
+        const pageContent = data[pageId];
+        if (!pageContent) return;
+
+        for (const key in pageContent) {
+          const el = document.getElementById(key);
+          if (!el) continue;
+
+          // If previewOffers, build circles
+          if (key === 'previewOffers') {
+            el.innerHTML = '';
+            pageContent.previewOffers.forEach(offer => {
+              const circle = document.createElement('a');
+              circle.href = offer.link;
+              circle.className = 'circle';
+              circle.innerHTML = `<span class="title">${offer.title}</span><span class="subtitle">${offer.text}</span>`;
+              el.appendChild(circle);
+            });
+          } else {
+            el.innerHTML = pageContent[key];
           }
-        });
-    };
+        }
+      });
+  };
 
-    // Initial load
+  // Initial load
+  updateContent(currentLang);
+
+  // Switch on click
+  langSwitch.addEventListener('click', e => {
+    e.preventDefault();
+    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+    langSwitch.innerText = currentLang === 'fr' ? 'EN' : 'FR';
     updateContent(currentLang);
-
-    langSwitch.addEventListener('click', e => {
-      e.preventDefault();
-      currentLang = currentLang === 'fr' ? 'en' : 'fr';
-      langSwitch.innerText = currentLang === 'fr' ? 'EN' : 'FR';
-      updateContent(currentLang);
-    });
-  }
+  });
 }
