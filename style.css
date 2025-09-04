@@ -98,15 +98,29 @@ nav ul li a {
   font-weight: bold;
   font-size: 18px;
   transition: all 0.3s ease;
+  position: relative; /* needed for the active-dot */
 }
 
+/* Hover effect */
 nav ul li a:hover {
   color: rgba(210,124,101,0.8);
 }
 
+/* Active page indicator: small dot under text */
 nav ul li a.active {
-  text-decoration: underline;
-  font-weight: 700;
+  color: var(--terracotta);
+}
+
+nav ul li a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--terracotta);
+  border-radius: 50%;
 }
 
 /* LANG SWITCH */
@@ -117,6 +131,7 @@ nav ul li a.active {
   margin-top: 20px;
   display: inline-block;
 }
+
 
 /* HERO SECTION = main intro */
 main.container {
