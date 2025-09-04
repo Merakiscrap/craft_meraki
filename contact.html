@@ -15,12 +15,15 @@
   <h1 id="contactTitle"></h1>
   <p id="contactDescription"></p>
 
-  <form class="contact-form" action="#" method="POST">
+  <form class="contact-form" id="contactForm" action="#" method="POST" enctype="multipart/form-data">
     <label id="labelName" for="name"></label>
     <input type="text" id="name" name="name" required />
 
     <label id="labelEmail" for="email"></label>
     <input type="email" id="email" name="email" required />
+
+    <label id="labelPhone" for="phone">Téléphone (optionnel)</label>
+    <input type="tel" id="phone" name="phone" />
 
     <label id="labelSubject" for="subject"></label>
     <input type="text" id="subject" name="subject" />
@@ -28,7 +31,12 @@
     <label id="labelMessage" for="message"></label>
     <textarea id="message" name="message" rows="6" required></textarea>
 
+    <label for="attachment">Joindre un fichier (optionnel)</label>
+    <input type="file" id="attachment" name="attachment" />
+
     <button type="submit" id="contactButton"></button>
+
+    <div id="formMessage" class="form-message"></div>
   </form>
 </main>
 
@@ -37,7 +45,32 @@
 
 <!-- Scripts -->
 <script src="js/load-components.js"></script>
-<script src="js/content.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  const messageBox = document.getElementById('formMessage');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault(); // prevent page reload
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message) {
+      messageBox.textContent = "Veuillez remplir tous les champs obligatoires.";
+      messageBox.className = 'form-message error';
+      return;
+    }
+
+    // Live success message (simulate sending)
+    messageBox.textContent = "Merci ! Votre message a été envoyé (simulation).";
+    messageBox.className = 'form-message success';
+    form.reset();
+  });
+});
+</script>
+
 </body>
 </html>
-
