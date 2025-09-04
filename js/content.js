@@ -1,11 +1,10 @@
 let langue = 'fr';
-
 function loadContent(lang){
   fetch(`assets/translations/content-${lang}.json`)
     .then(resp => resp.json())
     .then(data => {
       document.getElementById('heroTitle').innerText = data.heroTitle;
-      document.getElementById('merakiStory').innerHTML = data.merakiStory.replace(/\n/g, '<br>');
+      document.getElementById('merakiStory').innerHTML = data.merakiStory.replace(/\n/g,'<br>');
       const portfolioBtn = document.getElementById('portfolioButton');
       portfolioBtn.innerText = data.portfolioButton;
       portfolioBtn.href = "galerie.html";
@@ -22,18 +21,15 @@ function loadContent(lang){
     })
     .catch(err => console.error("Erreur JSON:", err));
 }
-
-// Initial load
-loadContent(langue);
-
-// Changement langue (FR/EN)
 document.addEventListener('DOMContentLoaded', () => {
+  loadContent(langue);
   const langSwitch = document.getElementById('langSwitch');
-  langSwitch.addEventListener('click', e => {
-    e.preventDefault();
-    langue = (langue === 'fr') ? 'en' : 'fr';
-    langSwitch.innerText = (langue === 'fr') ? 'EN' : 'FR';
-    loadContent(langue);
-  });
+  if(langSwitch){
+    langSwitch.addEventListener('click', e=>{
+      e.preventDefault();
+      langue = (langue==='fr')?'en':'fr';
+      langSwitch.innerText = (langue==='fr')?'EN':'FR';
+      loadContent(langue);
+    });
+  }
 });
-
