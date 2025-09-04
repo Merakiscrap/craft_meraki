@@ -107,21 +107,13 @@ nav ul li a:hover {
   color: rgba(210,124,101,0.8);
 }
 
-/* Active page indicator: small dot under text */
+/* Active page indicator: color terracotta */
 nav ul li a.active {
   color: var(--terracotta);
 }
 
 nav ul li a.active::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background-color: var(--terracotta);
-  border-radius: 50%;
+  content: none;
 }
 
 /* LANG SWITCH */
