@@ -40,21 +40,22 @@ header {
 }
 
 /* LOGO */
+/* ----- MOBILE (default) ----- */
 header .logo {
-  /* Remove margin hack, use responsive img size */
+  /* Container adjustments if needed */
 }
 
 header .logo img {
-  height: 54px; /* mobile first */
-  border-radius: 50%;
+  height: 54px;          /* mobile size */
+  border-radius: 50%;    /* circular logo */
   display: block;
-  transition: none; /* no scaling */
+  transition: none;      /* no scaling on hover */
 }
 
-/* Desktop: slightly bigger */
+/* ----- DESKTOP ----- */
 @media (min-width: 769px) {
   header .logo img {
-    height: 68px;
+    height: 68px;        /* slightly larger on desktop */
   }
 }
 
@@ -117,20 +118,20 @@ nav ul li a.active {
   display: inline-block;
 }
 
-/* HERO SECTION */
+/* HERO SECTION = main intro */
 main.container {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* instead of center */
   text-align: center;
-  padding: 100px 20px 40px 20px;
+  padding: 80px 20px 40px 20px;
 }
 
 .hero h1 {
   font-family: 'Helvetica Neue', Arial, sans-serif; /* simple elegant title */
-  font-size: 58px;
+  font-size: 56px;
   color: var(--terracotta);
   margin-bottom: 40px;
 }
