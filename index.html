@@ -79,6 +79,56 @@ const waitForHeader = setInterval(() => {
     });
   }
 }, 50);
+
+  /* language switch code */
+  const waitForMenu = setInterval(() => {
+  const langSwitch = document.getElementById('langSwitch');
+  if (langSwitch) {
+    clearInterval(waitForMenu);
+
+    let langue = 'fr'; // default
+
+    const updateContent = (lang) => {
+      fetch(`assets/translations/content-${lang}.json`)
+        .then(resp => resp.json())
+        .then(data => {
+          const heroTitle = document.getElementById('heroTitle');
+          const merakiStory = document.getElementById('merakiStory');
+          const portfolioButton = document.getElementById('portfolioButton');
+          const previewOffers = document.getElementById('previewOffers');
+
+          if(heroTitle) heroTitle.innerText = data.heroTitle;
+          if(merakiStory) merakiStory.innerHTML = data.merakiStory;
+          if(portfolioButton){
+            portfolioButton.innerText = data.portfolioButton;
+            portfolioButton.href = "galerie.html";
+          }
+          if(previewOffers){
+            previewOffers.innerHTML = '';
+            data.previewOffers.forEach(offer=>{
+              const circle = document.createElement('a');
+              circle.href = offer.link;
+              circle.className = 'circle';
+              circle.innerHTML = `<span class="title">${offer.title}</span><span class="subtitle">${offer.text}</span>`;
+              previewOffers.appendChild(circle);
+            });
+          }
+        });
+    };
+
+    // Initial load
+    updateContent(langue);
+
+    // Click event
+    langSwitch.addEventListener('click', e => {
+      e.preventDefault();
+      langue = (langue === 'fr') ? 'en' : 'fr';
+      langSwitch.innerText = (langue === 'fr') ? 'EN' : 'FR';
+      updateContent(langue);
+    });
+  }
+}, 50);
+
 </script>
 
 </body>
