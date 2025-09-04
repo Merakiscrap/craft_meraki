@@ -1,8 +1,3 @@
-/* ADD MENU AND FOOTER */
-<div id="menu-container"></div>
-<div id="footer-container"></div>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -70,13 +65,17 @@
   <div class="testimonials">
     <div class="testimonial">
       "Un travail remarquable, l’album digital était magnifique, bien au-delà de mes attentes. Merci pour votre patience et votre écoute !"  
-      <strong>— Marie et Julien, mariage 2024</strong>
+      <strong>— Chrys & Charley, mariage 2024</strong>
     </div>
     <div class="testimonial">
       "Le stand lors de notre soirée entreprise a été un vrai succès, les invités ont adoré participer. Un vrai moment convivial."  
-      <strong>— Agence Marketing Nova</strong>
+      <strong>— Sara, Anniversaire 2024</strong>
     </div>
     <div class="testimonial">
+      "L’album fait-main est une œuvre d’art. Chaque détail a été soigné avec passion, un souvenir inoubliable."  
+      <strong>— Nena & Amory, Mariage 2023</strong>
+    </div>
+      <div class="testimonial">
       "L’album fait-main est une œuvre d’art. Chaque détail a été soigné avec passion, un souvenir inoubliable."  
       <strong>— Sophie, anniversaire 50 ans</strong>
     </div>
@@ -91,10 +90,16 @@
   </div>
 
 </main>
+<body data-page="clients">
+  <!-- Page content -->
 
-<footer>
-  <p>© 2025 Les Albums Vivants - Tous droits réservés</p>
-</footer>
+  <!-- ✅ Add menu and footer containers -->
+  <div id="menu-container"></div>
+  <div id="footer-container"></div>
+
+  <!-- ✅ Load the script after containers exist -->
+  <script src="menu-loader.js" defer></script>
+  
 </body>
 </html>
 
