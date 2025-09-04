@@ -1,33 +1,103 @@
-// Injection menu et footer
+// ==========================
+// Load menu and footer
+// ==========================
 fetch('components/menu.html')
   .then(resp => resp.text())
-  .then(data => { document.getElementById('menu-container').innerHTML = data; })
-  .then(()=>{ initMenu(); });
+  .then(data => {
+    document.getElementById('menu-container').innerHTML = data;
+  })
+  .then(() => initMenuAndLang());
 
 fetch('components/footer.html')
   .then(resp => resp.text())
   .then(data => { document.getElementById('footer-container').innerHTML = data; });
 
-// Init menu hover/clic
-function initMenu(){
+// ==========================
+// Initialize menu behaviors + language switch
+// ==========================
+function initMenuAndLang() {
+  const header = document.querySelector('header');
   const logo = document.querySelector('.logo img');
   const nav = document.querySelector('nav');
-  const menuLinks = document.querySelectorAll('.menu a');
+  const menuLinks = document.querySelectorAll('nav ul li a');
+  const langSwitch = document.getElementById('langSwitch');
 
-  // Desktop hover
-  if(window.innerWidth >= 769){
-    logo.addEventListener('mouseenter',()=>nav.classList.add('open'));
-    nav.addEventListener('mouseleave',()=>nav.classList.remove('open'));
+  const mobileBreakpoint = 768;
+  let lastScroll = 0;
+
+  // ==========================
+  // Mobile scroll hide
+  // ==========================
+  window.addEventListener('scroll', () => {
+    if(window.innerWidth <= mobileBreakpoint) {
+      const currentScroll = window.pageYOffset;
+      if(currentScroll > lastScroll){
+        header.style.top = `-${header.offsetHeight}px`;
+      } else {
+        header.style.top = '0';
+      }
+      lastScroll = currentScroll;
+    }
+  });
+
+  // ==========================
+  // Desktop hover menu
+  // ==========================
+  if(window.innerWidth > mobileBreakpoint){
+    logo.addEventListener('mouseenter', () => nav.classList.add('open'));
+    nav.addEventListener('mouseleave', () => nav.classList.remove('open'));
   }
 
-  // Mobile click
-  logo.addEventListener('click', e=>{
-    if(window.innerWidth < 769){ e.preventDefault(); nav.classList.toggle('open'); }
+  // ==========================
+  // Mobile click menu toggle
+  // ==========================
+  logo.addEventListener('click', e => {
+    if(window.innerWidth <= mobileBreakpoint){
+      e.preventDefault();
+      nav.classList.toggle('open');
+    }
   });
 
+  // ==========================
+  // Close menu on link click (mobile)
+  // ==========================
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if(window.innerWidth < 769) nav.classList.remove('open');
+      if(window.innerWidth <= mobileBreakpoint) nav.classList.remove('open');
     });
   });
+
+  // ==========================
+  // Language switch
+  // ==========================
+  if(langSwitch){
+    let currentLang = 'fr'; // default
+
+    const pageId = document.body.dataset.page; // data-page in <body> to know which page
+
+    const updateContent = (lang) => {
+      fetch(`assets/translations/content-${lang}.json`)
+        .then(resp => resp.json())
+        .then(data => {
+          // Update page content depending on pageId
+          if(pageId && data[pageId]){
+            const pageContent = data[pageId];
+            for(const key in pageContent){
+              const el = document.getElementById(key);
+              if(el) el.innerHTML = pageContent[key];
+            }
+          }
+        });
+    };
+
+    // Initial load
+    updateContent(currentLang);
+
+    langSwitch.addEventListener('click', e => {
+      e.preventDefault();
+      currentLang = (currentLang === 'fr') ? 'en' : 'fr';
+      langSwitch.innerText = (currentLang === 'fr') ? 'EN' : 'FR';
+      updateContent(currentLang);
+    });
+  }
 }
