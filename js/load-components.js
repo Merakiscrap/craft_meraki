@@ -72,7 +72,7 @@ function initMenuAndLang() {
   // ==========================
   if (langSwitch) {
     let currentLang = 'fr'; // default
-    const pageId = document.body.dataset.page; // e.g., "index" or "contact"
+    const pageId = document.body.dataset.page; // "index" or "contact"
 
     const updateContent = (lang) => {
       fetch(`assets/translations/content-${lang}.json`)
@@ -80,15 +80,30 @@ function initMenuAndLang() {
         .then(data => {
           if (pageId && data[pageId]) {
             const pageContent = data[pageId];
+
             for (const key in pageContent) {
               const el = document.getElementById(key);
-              if (el) el.innerHTML = pageContent[key];
+              if (!el) continue;
+
+              // Special handling for arrays (e.g., previewOffers)
+              if (Array.isArray(pageContent[key])) {
+                el.innerHTML = ''; // clear container
+                pageContent[key].forEach(item => {
+                  const a = document.createElement('a');
+                  a.href = item.link;
+                  a.className = 'circle';
+                  a.innerHTML = `<span class="title">${item.title}</span><span class="subtitle">${item.text}</span>`;
+                  el.appendChild(a);
+                });
+              } else {
+                el.innerHTML = pageContent[key];
+              }
             }
           }
         });
     };
 
-    // Initial content load
+    // Initial load
     updateContent(currentLang);
 
     langSwitch.addEventListener('click', e => {
