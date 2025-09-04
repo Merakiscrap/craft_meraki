@@ -1,3 +1,4 @@
+/* INDEX PAGE TEXTE */ 
 {
   "heroTitle": "Meraki",
   "merakiStory": "Meraki est un projet qui combine une passion pour l'art et les histoires.\nAlors c'est tout naturellement que cette alliance, créée en Grèce, soit nommée « Meraki », qui signifie en grec « fait avec passion ».\nÀ travers ses œuvres, la créatrice fait durer vos plus belles histoires et vos souvenirs les plus mémorables...",
@@ -8,3 +9,31 @@
     {"title": "Stand création live", "text": "Animation photo et souvenirs participatifs lors de vos événements.", "link": "offres.html#stand"}
   ]
 }
+
+/* CONTACT PAGE TEXTE */ 
+
+{
+  "heroTitle": "Bienvenue chez Meraki",
+  "merakiStory": "Découvrez nos souvenirs uniques et personnalisés pour chaque moment important.",
+  "portfolioButton": "Voir le portfolio",
+  "previewOffers": [
+    {
+      "title": "Offre 1",
+      "text": "Description de l'offre 1",
+      "link": "offres.html"
+    },
+    {
+      "title": "Offre 2",
+      "text": "Description de l'offre 2",
+      "link": "offres.html"
+    }
+  ],
+  "contactTitle": "Contactez-nous",
+  "contactDescription": "Une question, un devis ou simplement envie d’échanger ? Envoyez-nous un message via ce formulaire :",
+  "labelName": "Nom complet *",
+  "labelEmail": "Adresse email *",
+  "labelSubject": "Sujet",
+  "labelMessage": "Message *",
+  "contactButton": "Envoyer"
+}
+
