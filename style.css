@@ -1,165 +1,210 @@
-/* Reset basique */
+/* =========================
+   RESET & VARIABLES
+========================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-/* Couleurs principales */
 :root {
-    --terracotta: #D27C65;
-    --beige: #F5F1EC;
-    --blanc: #FFFFFF;
-    --brun: #4B3B2A;
-    --or-rose: #C88C69;
-    --gris: #AFAFAF;
+  --terracotta: #D27C65;
+  --beige: #F5F1EC;
+  --blanc: #FFFFFF;
+  --brun: #4B3B2A;
+  --or-rose: #C88C69;
+  --gris: #AFAFAF;
 }
-
-/* Body */
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: var(--beige);
-    color: var(--brun);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  background-color: var(--beige);
+  color: var(--brun);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Header */
+/* =========================
+   HEADER & LOGO
+========================= */
 header {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
 }
-header .logo img {
-    height: 66px; /* légèrement plus gros */
-    border-radius: 50%;
-    cursor: default;
-}
-
-/* Menu latéral */
-#sideMenu {
-    position: fixed;
-    top:0;
-    left:0;
-    width:0;
-    height:100%;
-    background: rgba(255,255,255,0.8);
-    overflow:hidden;
-    transition: width 0.4s ease;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:999;
-}
-#sideMenu.open {width:250px;}
-#sideMenu ul.menu {
-    list-style:none;
-    display:flex;
-    flex-direction:column;
-    gap:25px;
-    opacity:0;
-    transition:opacity 0.3s ease;
-}
-#sideMenu.open ul.menu {opacity:1;}
-#sideMenu ul.menu li a {
-    text-decoration:none;
-    color: var(--brun);
-    font-weight:bold;
-    font-size:20px;
-    transition: color 0.3s ease;
-}
-#sideMenu ul.menu li a:hover {color: var(--terracotta);}
-#sideMenu ul.menu li.lang-switch a {
-    color: var(--terracotta);
-    margin-top: 30px;
+.logo img {
+  height: 66px; /* légèrement plus grand */
+  border-radius: 50%;
 }
 
-/* Hero */
+/* =========================
+   MENU LATERAL
+========================= */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255,255,255,0.8);
+  overflow: hidden;
+  transition: width 0.4s ease;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav.open {
+  width: 250px;
+}
+.menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+nav.open .menu {
+  opacity: 1;
+}
+.menu li a {
+  text-decoration: none;
+  color: var(--brun);
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+.menu li a:hover {
+  color: rgba(210,124,101,0.8); /* hover léger transparent */
+}
+.menu li a.active {
+  text-decoration: underline;
+  font-weight: 700;
+}
+.lang-switch a {
+  font-size: 14px;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+/* =========================
+   HERO
+========================= */
 main.container {
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    text-align:center;
-    padding:130px 20px 40px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 40px 20px;
 }
 .hero h1 {
-    font-family:'Playfair Display', serif;
-    font-size:65px;
-    color: var(--terracotta);
-    margin-bottom:35px;
+  font-family: 'Lato', sans-serif; /* uniquement pour le titre Meraki */
+  font-size: 56px;
+  color: var(--terracotta);
+  margin-bottom: 30px;
 }
 .meraki-story {
-    max-width:800px;
-    font-family: 'Lora', serif;
-    font-size:19px;
-    line-height:1.8;
-    margin-bottom:50px;
-    color: var(--brun);
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 50px;
 }
-
-/* Bouton portfolio */
 .btn-portfolio {
-    padding:16px 38px;
-    font-size:18px;
-    border-radius:30px;
-    font-family:'Playfair Display', serif;
-    font-weight:600;
-    background-color: var(--terracotta);
-    color: var(--blanc);
-    text-decoration:none;
-    transition: all 0.3s ease;
+  padding: 16px 36px;
+  background-color: var(--terracotta);
+  color: var(--blanc);
+  border-radius: 35px; /* plus arrondi */
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  transition: all 0.3s ease;
 }
-.btn-portfolio:hover {background-color: var(--or-rose);}
+.btn-portfolio:hover {
+  background-color: rgba(200,140,105,0.9); /* hover léger transparent */
+}
 
-/* Cercles Offres */
+/* =========================
+   CERCLES OFFRES
+========================= */
 .circle-offers {
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    margin-top:60px;
-    flex-wrap:wrap;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 60px;
+  flex-wrap: wrap;
 }
 .circle {
-    position:relative;
-    width:200px;
-    height:200px;
-    background: var(--blanc);
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    flex-direction:column;
-    font-family: 'Lora', serif;
-    font-size:18px;
-    color: var(--terracotta);
-    text-decoration:none;
-    padding:20px;
-    transition: all 0.3s ease;
-    box-shadow:0 3px 6px rgba(0,0,0,0.1);
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: var(--blanc);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--brun);
+  text-decoration: none;
+  padding: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  flex-direction: column;
 }
-.circle .title, .circle .subtitle {
-    display:block;
-    width:100%;
+.circle .title,
+.circle .subtitle {
+  transition: opacity 0.3s ease;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  padding: 0 10px;
 }
-.circle .subtitle {opacity:0; font-size:14px; color: var(--blanc); position:absolute; bottom:20px; padding:0 10px;}
+.circle .title {
+  font-weight: bold; /* TITRE EN GRAS */
+  font-size: 18px;
+  color: var(--terracotta);
+}
+.circle .subtitle {
+  font-size: 14px;
+  color: var(--blanc);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .circle:hover {
-    background: var(--terracotta);
-    color: var(--blanc);
+  background: var(--terracotta);
 }
-.circle:hover .title {display:none;}
-.circle:hover .subtitle {opacity:1;}
+.circle:hover .title {
+  opacity: 0;
+}
+.circle:hover .subtitle {
+  opacity: 1;
+}
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
 footer {
-    text-align:center;
-    padding:15px;
-    font-size:0.85rem;
-    color: var(--gris);
-    margin-top:auto;
+  text-align: center;
+  font-size: 12px; /* plus petit */
+  margin-top: auto;
+  padding: 20px 0;
+  color: var(--gris);
+  background: none; /* plus de bandeau blanc */
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width:768px){
+  nav.open{width:100%;}
+  .hero h1{font-size:42px;}
+  .meraki-story{font-size:16px;}
+  .circle-offers{flex-direction:column; align-items:center;}
+  .btn-portfolio {font-size:16px; padding:14px 30px;}
 }
