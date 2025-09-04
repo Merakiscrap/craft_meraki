@@ -45,6 +45,21 @@ header .logo {
   margin-top: 20px;  /* space from top */
 }
 
+/* Default logo size (mobile first) */
+header .logo img {
+  height: 50px;       /* mobile size */
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Desktop: make it slightly bigger */
+@media (min-width: 769px) {
+  header .logo img {
+    height: 66px;     /* slightly larger on desktop */
+  }
+}
+
+
 /* NAVIGATION */
 nav {
   position: fixed;
