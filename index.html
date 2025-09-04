@@ -57,19 +57,26 @@ const waitForHeader = setInterval(() => {
       }
     });
 
-    // Desktop hover menu
-    if (window.innerWidth > mobileBreakpoint) {
-      logo.addEventListener('mouseenter', () => nav.classList.add('open'));
-      nav.addEventListener('mouseleave', () => nav.classList.remove('open'));
-    }
+  // Hover only works on desktop
+logo.addEventListener('mouseenter', () => {
+  if (window.innerWidth > mobileBreakpoint) {
+    nav.classList.add('open');
+  }
+});
+nav.addEventListener('mouseleave', () => {
+  if (window.innerWidth > mobileBreakpoint) {
+    nav.classList.remove('open');
+  }
+});
 
-    // Mobile click menu toggle
-    logo.addEventListener('click', (e) => {
-      if (window.innerWidth <= mobileBreakpoint) {
-        e.preventDefault();
-        nav.classList.toggle('open');
-      }
-    });
+// Click always works, but only toggles on mobile
+logo.addEventListener('click', (e) => {
+  if (window.innerWidth <= mobileBreakpoint) {
+    e.preventDefault();
+    nav.classList.toggle('open');
+  }
+});
+
 
     // Close menu when clicking a link on mobile
     menuLinks.forEach(link => {
