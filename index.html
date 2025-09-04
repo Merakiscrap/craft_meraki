@@ -29,49 +29,32 @@
 <!-- SCRIPTS -->
 <script src="js/load-components.js"></script>
 <script src="js/content.js"></script>
-</body>
-</html>
-<!-- Existing menu and language scripts -->
-<script>
-const toggleBtn = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.menu');
-const logo = document.querySelector('.logo img');
-const menuLinks = document.querySelectorAll('.menu a');
-const langSwitch = document.getElementById('langSwitch');
 
-// Menu toggle for mobile
-toggleBtn.addEventListener('click', () => {
-  menu.classList.toggle('show');
-});
-
-// Menu hover for desktop
-if(window.innerWidth >= 769){
-  logo.addEventListener('mouseenter', ()=> menu.classList.add('show'));
-  menu.addEventListener('mouseleave', ()=> menu.classList.remove('show'));
-}
-
-// Language switch code...
-langSwitch.addEventListener('click', e => {
-  e.preventDefault();
-  // language switch logic
-});
-</script>
-
-<!-- Header hide on scroll -->
-<script>
+  <script>
 let lastScroll = 0;
 const header = document.querySelector('header');
 
+// Mobile breakpoint
+const mobileBreakpoint = 768;
+
 window.addEventListener('scroll', () => {
   const currentScroll = window.pageYOffset;
-  if (currentScroll > lastScroll) {
-    // scrolling down
-    header.style.top = '-80px'; // hide
-  } else {
-    // scrolling up
-    header.style.top = '0'; // show
+
+  if (window.innerWidth <= mobileBreakpoint) {
+    if (currentScroll > lastScroll) {
+      // Scrolling down → hide header
+      header.style.top = '-80px'; // adjust -80px to your header height
+    } else {
+      // Scrolling up → show header
+      header.style.top = '0';
+    }
   }
+
   lastScroll = currentScroll;
 });
 </script>
+
+  
+</body>
+</html>
 
