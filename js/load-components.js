@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Load menu and footer ---
   Promise.all([
-    fetch('../components/menu.html').then(r => r.text()),
-    fetch('../components/footer.html').then(r => r.text())
+    fetch('/craft_meraki/components/menu.html').then(r => r.text()),
+    fetch('/craft_meraki/components/footer.html').then(r => r.text())
   ])
   .then(([menuHTML, footerHTML]) => {
     menuContainer.innerHTML = menuHTML;
