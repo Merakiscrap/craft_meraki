@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-page="contact">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,7 +8,7 @@
 </head>
 <body data-page="contact">
 
-<!-- MENU -->
+<!-- MENU (loaded dynamically) -->
 <div id="menu-container"></div>
 
 <main class="container">
@@ -18,26 +18,26 @@
   <form class="contact-form" action="#" method="POST">
     <label id="labelName" for="name"></label>
     <input type="text" id="name" name="name" required />
-    
+
     <label id="labelEmail" for="email"></label>
     <input type="email" id="email" name="email" required />
-    
+
     <label id="labelSubject" for="subject"></label>
     <input type="text" id="subject" name="subject" />
-    
+
     <label id="labelMessage" for="message"></label>
     <textarea id="message" name="message" rows="6" required></textarea>
-    
+
     <button type="submit" id="contactButton"></button>
   </form>
 </main>
 
-<!-- FOOTER -->
+<!-- FOOTER (loaded dynamically) -->
 <div id="footer-container"></div>
 
-<!-- SCRIPTS -->
+<!-- Scripts -->
 <script src="js/load-components.js"></script>
 <script src="js/content.js"></script>
-
 </body>
 </html>
+
