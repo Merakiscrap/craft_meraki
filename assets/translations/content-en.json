@@ -29,6 +29,7 @@
     "labelPhone": "Phone number (optional)",
     "labelSubject": "Subject",
     "labelMessage": "Message *",
+    "attachment": "Add a file (optional)",
     "contactButton": "Send"
   }
 }
