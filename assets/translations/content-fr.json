@@ -26,6 +26,7 @@
     "contactDescription": "Une question, un devis ou simplement envie d’échanger ? Envoyez-nous un message via ce formulaire :",
     "labelName": "Nom complet *",
     "labelEmail": "Adresse email *",
+    "labelPhone": "Téléphone (optionnel)",
     "labelSubject": "Sujet",
     "labelMessage": "Message *",
     "contactButton": "Envoyer"
