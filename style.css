@@ -251,7 +251,7 @@ footer {
 }
 
 /* ==========================
-   CONTACT FORM
+   CONTACT FORM STYLE
 ========================== */
 .contact-form {
   display: flex;
@@ -284,13 +284,13 @@ footer {
 }
 
 .form-message {
-  margin-top: 10px;
+  margin-top: 20px;
   font-weight: bold;
   text-align: center;
 }
 
 .form-message.success {
-  color: green;
+  color: terracotta;
 }
 
 .form-message.error {
@@ -307,5 +307,22 @@ footer {
     font-size: 16px;
     padding: 14px 20px;
   }
+}
+
+/* Contact Page Styling */
+
+#contactTitle {
+  font-size: 36px;
+  color: var(--terracotta); /* Title color */
+  margin-bottom: 20px; /* Space below title */
+  text-align: center;
+}
+
+#contactDescription {
+  font-size: 18px;
+  color: var(--brun); /* Subtitle color */
+  margin-bottom: 30px; /* Space below description */
+  text-align: center;
+  line-height: 1.6;
 }
 
