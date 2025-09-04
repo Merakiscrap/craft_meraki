@@ -35,30 +35,28 @@ header {
   z-index: 1000;
   display: flex;
   align-items: center;
-  padding: 20px 50px; /* spacing from top/left/right */
+  padding: 20px 50px;
   gap: 20px;
 }
 
 /* LOGO */
 header .logo {
-  margin-left: 50px; /* space from left */
-  margin-top: 20px;  /* space from top */
+  /* Remove margin hack, use responsive img size */
 }
 
-/* Default logo size (mobile first) */
 header .logo img {
-  height: 50px;       /* mobile size */
+  height: 50px; /* mobile first */
   border-radius: 50%;
-  transition: transform 0.3s ease;
+  display: block;
+  transition: none; /* no scaling */
 }
 
-/* Desktop: make it slightly bigger */
+/* Desktop: slightly bigger */
 @media (min-width: 769px) {
   header .logo img {
-    height: 66px;     /* slightly larger on desktop */
+    height: 66px;
   }
 }
-
 
 /* NAVIGATION */
 nav {
@@ -102,17 +100,17 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: rgba(210,124,101,0.8); /* transparent terracotta hover */
+  color: rgba(210,124,101,0.8);
 }
 
 nav ul li a.active {
-  text-decoration: underline; /* current page */
+  text-decoration: underline;
   font-weight: 700;
 }
 
 /* LANG SWITCH */
 .lang-switch a {
-  font-size: 14px;
+  font-size: 12px; /* smaller for better fit */
   color: var(--terracotta);
   font-weight: 600;
   margin-top: 20px;
@@ -127,14 +125,14 @@ main.container {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 160px 20px 40px 20px; /* space for header */
+  padding: 160px 20px 40px 20px;
 }
 
 .hero h1 {
-  font-family: 'Lato', sans-serif; /* elegant for title */
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* simple elegant title */
   font-size: 56px;
   color: var(--terracotta);
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .meraki-story {
@@ -142,14 +140,14 @@ main.container {
   font-size: 18px;
   line-height: 1.8;
   margin-bottom: 50px;
-  font-family: 'Helvetica Neue', Arial, sans-serif; /* elegant readable */
 }
 
+/* BUTTON */
 .btn-portfolio {
-  padding: 18px 40px;
+  padding: 20px 42px;
   background-color: var(--terracotta);
   color: var(--blanc);
-  border-radius: 35px;
+  border-radius: 40px; /* more rounded */
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -192,12 +190,12 @@ main.container {
   transition: opacity 0.3s ease;
   position: absolute;
   width: 100%;
-  text-align: center;
-  padding: 0 10px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  text-align: center;
+  padding: 0 10px;
 }
 
 .circle .title {
@@ -230,7 +228,6 @@ footer {
   font-size: 12px;
   padding: 20px 0;
   color: var(--gris);
-  background: none;
   margin-top: auto;
 }
 
@@ -241,4 +238,5 @@ footer {
   .meraki-story{font-size:16px;}
   .circle-offers{flex-direction:column; align-items:center;}
   .btn-portfolio {font-size:16px; padding:14px 30px;}
+  header .logo img {height:50px;} /* ensure mobile logo */
 }
