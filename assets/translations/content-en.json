@@ -26,6 +26,7 @@
     "contactDescription": "Any questions, a quote, or just want to chat? Send us a message via this form:",
     "labelName": "Full name *",
     "labelEmail": "Email address *",
+    "labelPhone": "Phone number (optional)",
     "labelSubject": "Subject",
     "labelMessage": "Message *",
     "contactButton": "Send"
