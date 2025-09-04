@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Load menu and footer ---
   Promise.all([
-    fetch(basePath + 'components/menu.html').then(r => r.text()),
-    fetch(basePath + 'components/footer.html').then(r => r.text())
+    fetch('/components/menu.html').then(r => r.text()),
+    fetch('/components/footer.html').then(r => r.text())
   ])
   .then(([menuHTML, footerHTML]) => {
     menuContainer.innerHTML = menuHTML;
