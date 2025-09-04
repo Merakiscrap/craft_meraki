@@ -40,9 +40,9 @@ header {
 }
 
 /* LOGO */
-header .logo img {
-  height: 66px;
-  border-radius: 50%;
+header .logo {
+  margin-left: 50px; /* space from left */
+  margin-top: 20px;  /* space from top */
 }
 
 /* NAVIGATION */
