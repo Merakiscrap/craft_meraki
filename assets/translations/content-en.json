@@ -1,31 +1,33 @@
 {
- "index": {
-  "heroTitle": "Meraki",
-  "merakiStory": "Meraki is a project born from a passion for art and storytelling. The word “Meraki” comes from Greek and means “to do something with soul, creativity, and love”. Through her creations, the artist turns your most beautiful stories and precious memories into timeless works. Whether it’s a wedding, a thesis, or a birthday, she will capture emotions and life’s moments to create unique, everlasting gifts.",
-  "portfolioButton": "Discover Meraki's Creations",
-  "previewOffers": [
-    {
-      "title": "Personalized Digital Album",
-      "text": "Professional layout, human selection, premium printing, delivered to your door.",
-      "link": "offres.html#digital"
-    },
-    {
-      "title": "Unique Handmade Album",
-      "text": "Artisanal scrapbooking, refined decorations, a precious and sensory object.",
-      "link": "offres.html#fait-main"
-    },
-    {
-      "title": "Live Memory Creation Stand",
-      "text": "Photo animation and participative memory creation during your events.",
-      "link": "offres.html#stand"
-    }
-  ],
+  "index": {
+    "heroTitle": "Meraki",
+    "merakiStory": "Meraki is a project born from a passion for art and storytelling. The word “Meraki” comes from Greek and means “to do something with soul, creativity, and love”. Through her creations, the artist turns your most beautiful stories and precious memories into timeless works. Whether it’s a wedding, a thesis, or a birthday, she will capture emotions and life’s moments to create unique, everlasting gifts.",
+    "portfolioButton": "Discover Meraki's Creations",
+    "previewOffers": [
+      {
+        "title": "Personalized Digital Album",
+        "text": "Professional layout, human selection, premium printing, delivered to your door.",
+        "link": "offres.html#digital"
+      },
+      {
+        "title": "Unique Handmade Album",
+        "text": "Artisanal scrapbooking, refined decorations, a precious and sensory object.",
+        "link": "offres.html#fait-main"
+      },
+      {
+        "title": "Live Memory Creation Stand",
+        "text": "Photo animation and participative memory creation during your events.",
+        "link": "offres.html#stand"
+      }
+    ],
     "contact": {
-    "contactTitle": "Contact us",
-    "contactDescription": "Any questions, a quote, or just want to chat? Send us a message via this form:",
-    "labelName": "Full name *",
-    "labelEmail": "Email address *",
-    "labelSubject": "Subject",
-    "labelMessage": "Message *",
-    "contactButton": "Send"
+      "contactTitle": "Contact us",
+      "contactDescription": "Any questions, a quote, or just want to chat? Send us a message via this form:",
+      "labelName": "Full name *",
+      "labelEmail": "Email address *",
+      "labelSubject": "Subject",
+      "labelMessage": "Message *",
+      "contactButton": "Send"
+    }
+  }
 }
