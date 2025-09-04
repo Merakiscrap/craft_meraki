@@ -3,11 +3,7 @@
     "heroTitle": "Meraki",
     "merakiStory": "Meraki est un projet qui combine une passion pour l'art et les histoires.\nAlors c'est tout naturellement que cette alliance, créée en Grèce, soit nommée « Meraki », qui signifie en grec « fait avec passion ».\nÀ travers ses œuvres, la créatrice fait durer vos plus belles histoires et vos souvenirs les plus mémorables...",
     "portfolioButton": "Découvrez les créations Meraki",
-    "previewOffers": [
-      {"title": "Album digital", "text": "Mise en page professionnelle, tri humain, impression pro, livré chez vous.", "link": "offres.html#digital"},
-      {"title": "Album fait-main", "text": "Scrapbooking artisanal, décorations nobles, objet précieux et sensoriel.", "link": "offres.html#fait-main"},
-      {"title": "Stand création live", "text": "Animation photo et souvenirs participatifs lors de vos événements.", "link": "offres.html#stand"}
-    ]
+    "previewOffers": "<a href='offres.html#digital' class='circle'><span class='title'>Album digital</span><span class='subtitle'>Mise en page professionnelle, tri humain, impression pro, livré chez vous.</span></a><a href='offres.html#fait-main' class='circle'><span class='title'>Album fait-main</span><span class='subtitle'>Scrapbooking artisanal, décorations nobles, objet précieux et sensoriel.</span></a><a href='offres.html#stand' class='circle'><span class='title'>Stand création live</span><span class='subtitle'>Animation photo et souvenirs participatifs lors de vos événements.</span></a>"
   },
   "contact": {
     "contactTitle": "Contactez-nous",
