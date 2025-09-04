@@ -21,6 +21,19 @@ body {
   min-height:100vh;
 }
 
+/*HEADER*/
+header {
+  position: fixed;
+  top: 20px; /* space from top */
+  left: 20px; /* space from left */
+  right: 20px; /* keep full width if needed */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
 /* LOGO */
 header .logo img {
   height: 66px;
