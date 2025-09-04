@@ -7,6 +7,19 @@ Promise.all([
 ]).then(([menuHTML, footerHTML]) => {
   document.getElementById('menu-container').innerHTML = menuHTML;
   document.getElementById('footer-container').innerHTML = footerHTML;
+  
+  
+  // === Highlight active page ===
+  const pageId = document.body.dataset.page;
+  if (pageId) {
+    const menuLinks = document.querySelectorAll('nav ul li a');
+    menuLinks.forEach(link => {
+      const hrefPage = link.getAttribute('href').split('.')[0];
+      if (hrefPage === pageId) link.classList.add('active');
+      else link.classList.remove('active');
+    });
+  }
+  
   initMenuAndLang();
 });
 
