@@ -31,5 +31,48 @@
     "labelMessage": "Message *",
     "attachment": "Add a file (optional)",
     "contactButton": "Send"
+  },
+  "offers": {
+    "title": "Our Offers",
+    "items": [
+      {
+        "id": "digital",
+        "title": "Personalized Digital Album + Pro Printing",
+        "description": "A photo album fully designed by hand, with storytelling, photo selection, elegant layout, captions, themes, then printed by a professional printer and delivered to your home.",
+        "features": [
+          "Manual photo selection and emotional curation",
+          "Elegant and personalized layout",
+          "Emotional storytelling",
+          "Up to 5 revisions",
+          "Printing and delivery"
+        ],
+        "price": "Indicative price: €350 to €700 depending on page count and complexity."
+      },
+      {
+        "id": "fait-main",
+        "title": "Handmade Unique Album (Artisanal Scrapbooking)",
+        "description": "An album crafted by hand with printed photos, collage, papers, textures, decorations, ribbons, handwritten or calligraphy elements. Each piece is unique and precious.",
+        "features": [
+          "100% handmade, noble materials",
+          "Choice of theme, colors, and style",
+          "High-quality prints",
+          "Carefully packaged and shipped"
+        ],
+        "price": "Indicative price: €800 to €1500 depending on complexity and time spent."
+      },
+      {
+        "id": "stand",
+        "title": "Live Memory Creation Booth",
+        "description": "A decorated booth at your event, where guests can paste instant photos, write sweet notes, anecdotes, and contribute to the album creation live.",
+        "features": [
+          "Presence for 4 to 8 hours depending on event",
+          "Personalized themed decor",
+          "Instant camera or mini printer",
+          "All supplies provided",
+          "Option to create a digital or handmade album afterward"
+        ],
+        "price": "Indicative price: €600 to €1200 for the day (excluding post-event album creation)."
+      }
+    ]
   }
 }
