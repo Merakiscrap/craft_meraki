@@ -31,5 +31,49 @@
     "labelMessage": "Message *",
     "attachment": "Joindre un fichier (optionnel)",
     "contactButton": "Envoyer"
+  },
+  {
+  "offers": {
+    "title": "Nos Offres",
+    "items": [
+      {
+        "id": "digital",
+        "title": "Album digital personnalisé + impression pro",
+        "description": "Un album photo entièrement mis en page à la main, avec storytelling, tri des photos, design, légendes, thématiques, puis imprimé via un imprimeur professionnel et livré chez vous.",
+        "features": [
+          "Sélection manuelle des photos et tri émotionnel",
+          "Mise en page élégante et personnalisée",
+          "Récit/narration émotionnelle",
+          "Jusqu’à 5 retours/modifications",
+          "Impression et livraison"
+        ],
+        "price": "Tarifs indicatifs : 350 à 700 € selon nombre de pages et complexité."
+      },
+      {
+        "id": "fait-main",
+        "title": "Album fait-main unique (scrapbooking artisanal)",
+        "description": "Un album créé à la main avec impressions photos, collage, papiers, textures, décorations, rubans, écriture manuscrite ou calligraphie. Chaque exemplaire est unique et précieux.",
+        "features": [
+          "100% fait main, matériaux nobles",
+          "Choix de thématique, couleurs et style",
+          "Impressions haute qualité",
+          "Envoi protégé et soigné"
+        ],
+        "price": "Tarifs indicatifs : 800 à 1500 € selon complexité et temps passé."
+      },
+      {
+        "id": "stand",
+        "title": "Stand création souvenir live",
+        "description": "Un stand décoré lors de votre événement, où les invités peuvent coller des photos imprimées instantanément, écrire des mots doux, anecdotes et participer à la création de l’album en direct.",
+        "features": [
+          "Présence de 4 à 8 heures selon événement",
+          "Décor thématique personnalisé",
+          "Appareil photo instantané ou mini-imprimante",
+          "Fournitures fournies",
+          "Possibilité de créer ensuite un album digital ou fait-main à partir du contenu collecté"
+        ],
+        "price": "Tarifs indicatifs : 600 à 1200 € pour la journée (hors création d’album post-événement)."
+      }
+    ]
   }
 }
