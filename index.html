@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" data-page="index">
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meraki - Souvenirs uniques</title>
@@ -10,7 +11,9 @@
 
 <!-- MENU -->
 <div id="menu-container"></div>
-
+  <script>
+$("#menu-container").load("components/menu.html");
+  </script>
 <!-- HERO -->
 <main class="container">
   <section class="hero">
@@ -27,6 +30,6 @@
 <div id="footer-container"></div>
 
 <!-- SCRIPTS -->
-<script src="js/load-components.js"></script>
+<! -- <script src="js/load-components.js"></script> -->
 </body>
 </html>
