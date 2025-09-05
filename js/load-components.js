@@ -113,18 +113,34 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!el) continue;
 
             // If previewOffers, build circles
-            if (key === 'previewOffers') {
-              el.innerHTML = '';
-              pageContent.previewOffers.forEach(offer => {
-                const circle = document.createElement('a');
-                circle.href = offer.link;
-                circle.className = 'circle';
-                circle.innerHTML = `<span class="title">${offer.title}</span><span class="subtitle">${offer.text}</span>`;
-                el.appendChild(circle);
-              });
-            } else {
-              el.innerHTML = pageContent[key];
-            }
+          if (key === 'previewOffers') {
+  // For index page circles
+  el.innerHTML = '';
+  pageContent.previewOffers.forEach(offer => {
+    const circle = document.createElement('a');
+    circle.href = offer.link;
+    circle.className = 'circle';
+    circle.innerHTML = `<span class="title">${offer.title}</span><span class="subtitle">${offer.text}</span>`;
+    el.appendChild(circle);
+  });
+} else if (key === 'offers') {
+  // For offres page sections
+  el.innerHTML = '';
+  pageContent.offers.forEach(offer => {
+    const section = document.createElement('section');
+    section.className = 'offer-section';
+    section.innerHTML = `
+      <h2>${offer.title}</h2>
+      <p>${offer.description}</p>
+      <ul>${offer.features.map(f => `<li>${f}</li>`).join('')}</ul>
+      <p><strong>${offer.price}</strong></p>
+    `;
+    el.appendChild(section);
+  });
+} else {
+  el.innerHTML = pageContent[key];
+}
+
           }
         })
         .catch(err => console.error(`Error loading translation content for ${lang}:`, err));
