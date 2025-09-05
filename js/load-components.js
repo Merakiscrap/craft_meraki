@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     footerContainer.innerHTML = footerHTML;
 
     // --- Highlight active page ---
+  $("#menu").load("menu.html", function(){
     const pageId = document.body.dataset.page;
     if (pageId) {
       document.querySelectorAll('nav ul li a').forEach(link => {
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else link.classList.remove('active');
       });
     }
+    });
 
     // --- Initialize menu and language switch ---
     if (typeof initMenuAndLang === 'function') {
