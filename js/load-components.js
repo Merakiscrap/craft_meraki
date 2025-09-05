@@ -112,9 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const el = document.getElementById(key);
             if (!el) continue;
 
-            // If previewOffers, build circles
+            // If previewOffers, build circles 
+              // For index page circles
           if (key === 'previewOffers') {
-  // For index page circles
   el.innerHTML = '';
   pageContent.previewOffers.forEach(offer => {
     const circle = document.createElement('a');
